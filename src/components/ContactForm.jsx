@@ -47,33 +47,38 @@ const inputBase =
 function MarblePanel() {
   return (
     <div className="relative h-full overflow-hidden flex flex-col justify-between p-10 lg:p-12">
-      {/* Foto de mármore real */}
+      {/* Foto de mármore real — escurecida para servir de pano de fundo */}
       <img
         src="/images/marble-texture-2.jpg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
+        style={{ filter: 'brightness(0.32) saturate(0.65)' }}
       />
 
-      {/* Overlay escuro para legibilidade do texto */}
-      <div aria-hidden="true" className="absolute inset-0 bg-[#0a0a0a]/78 pointer-events-none" />
-
-      {/* Gradiente dourado — calor no canto inferior */}
+      {/* Overlay escuro principal — garante contraste do texto */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 80% 100%, rgba(201,169,110,0.12) 0%, transparent 55%)' }}
+        style={{ background: 'linear-gradient(135deg, rgba(10,10,10,0.88) 0%, rgba(14,14,14,0.78) 60%, rgba(10,10,10,0.92) 100%)' }}
       />
 
-      {/* Surface sheen — reflexo no topo */}
+      {/* Gradiente dourado — calor no canto inferior direito */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 35% 15%, rgba(255,255,255,0.06) 0%, transparent 50%)' }}
+        style={{ background: 'radial-gradient(ellipse at 80% 100%, rgba(201,169,110,0.18) 0%, transparent 55%)' }}
+      />
+
+      {/* Surface sheen — reflexo sutil no topo */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 30% 10%, rgba(255,255,255,0.05) 0%, transparent 50%)' }}
       />
 
       {/* Left gold border */}
-      <div aria-hidden="true" className="absolute left-0 top-12 bottom-12 w-px bg-gradient-to-b from-transparent via-gold/50 to-transparent" />
+      <div aria-hidden="true" className="absolute left-0 top-12 bottom-12 w-px bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
 
       {/* Logo */}
       <div className="relative z-10 flex flex-col gap-2">
@@ -81,22 +86,22 @@ function MarblePanel() {
           <LogoMark className="h-8 w-auto flex-shrink-0" color="white" />
           <LogoWordmark className="h-[12px] w-auto" color="white" />
         </div>
-        <p className="font-inter text-[10px] tracking-[0.22em] uppercase text-gold/60 mt-0.5">
+        <p className="font-inter text-[10px] tracking-[0.22em] uppercase text-gold mt-0.5">
           Mármore &amp; Granito Premium
         </p>
       </div>
 
       {/* Pull quote */}
       <div className="relative z-10 my-auto">
-        <span className="font-playfair text-6xl text-gold/20 leading-none select-none" aria-hidden="true">"</span>
-        <blockquote className="font-playfair text-xl lg:text-2xl text-white/80 leading-relaxed -mt-4">
+        <span className="font-playfair text-6xl text-gold/30 leading-none select-none" aria-hidden="true">"</span>
+        <blockquote className="font-playfair text-xl lg:text-2xl text-white/95 leading-relaxed -mt-4">
           A beleza da pedra natural está na sua singularidade. Nenhuma peça é igual à outra.
         </blockquote>
       </div>
 
       {/* Contact details */}
       <div className="relative z-10 flex flex-col gap-4">
-        <div className="h-px bg-white/10" />
+        <div className="h-px bg-white/15" />
         <div className="flex flex-col gap-3">
           {[
             { icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z', label: 'WhatsApp', value: BUSINESS.phone },
@@ -105,12 +110,12 @@ function MarblePanel() {
             { icon: 'M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-8h4v2h-6V7h2v5z', label: 'Horário', value: BUSINESS.hours },
           ].map((c) => (
             <div key={c.label} className="flex items-center gap-3">
-              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 text-gold/50 flex-shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 text-gold flex-shrink-0">
                 <path d={c.icon} stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
               </svg>
-              <div className="flex items-baseline gap-2">
-                <span className="font-inter text-[9px] tracking-[0.2em] uppercase text-white/30">{c.label}</span>
-                <span className="font-inter text-[13px] text-white/60">{c.value}</span>
+              <div className="flex items-baseline gap-2 flex-wrap">
+                <span className="font-inter text-[9px] tracking-[0.2em] uppercase text-white/55">{c.label}</span>
+                <span className="font-inter text-[13px] text-white/90">{c.value}</span>
               </div>
             </div>
           ))}
