@@ -1,0 +1,58 @@
+name: Deploy para Hostinger
+
+# Roda automaticamente em todo push na branch main, ou manualmente pela aba Actions
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Cancela deploys antigos se um novo for disparado
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build de produção
+        run: npm run build
+
+      - name: Copiar .htaccess para o dist
+        # O .htaccess fica em /public e o Vite copia para dist/ automaticamente,
+        # mas garantimos aqui caso algo mude.
+        run: |
+          if [ -f public/.htaccess ] && [ ! -f dist/.htaccess ]; then
+            cp public/.htaccess dist/.htaccess
+          fi
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./dist/
+          # Remove arquivos no servidor que não existem mais no dist (limpeza)
+          dangerous-clean-slate: false
+          # Não tocar em arquivos que o cliente possa ter colocado manualmente
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.htaccess.bak

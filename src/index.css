@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Evita que o iOS aumente automaticamente o tamanho da fonte em rotação */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Defensivo contra qualquer elemento que vaze a viewport */
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    /* Suporte a notch/safe area no iPhone */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@layer components {
+  /* ── Scroll-triggered fade-up ─────────────────────────────────────────── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    /* ease-out expo: arranque suave, chegada precisa */
+    transition:
+      opacity  0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Reduz o deslocamento em mobile */
+  @media (max-width: 640px) {
+    .fade-up {
+      transform: translateY(12px);
+    }
+  }
+
+  .delay-1 { transition-delay: 0.08s; }
+  .delay-2 { transition-delay: 0.16s; }
+  .delay-3 { transition-delay: 0.24s; }
+  .delay-4 { transition-delay: 0.32s; }
+  .delay-5 { transition-delay: 0.40s; }
+  .delay-6 { transition-delay: 0.48s; }
+
+  /* ── Gold accent underline ────────────────────────────────────────────── */
+  .title-accent {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.75rem;
+  }
+
+  .title-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 44px;
+    height: 2px;
+    background-color: #c9a96e;
+    /* Anima a largura quando o título entra */
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  }
+
+  /* ── Portfolio card ───────────────────────────────────────────────────── */
+  .portfolio-card:hover .portfolio-img {
+    transform: scale(1.05);
+  }
+
+  /* Desktop: overlay aparece no hover */
+  @media (min-width: 640px) {
+    .portfolio-card:hover .portfolio-overlay {
+      opacity: 1 !important;
+    }
+  }
+
+  /* Smooth scale */
+  .portfolio-img {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* ── Form input ───────────────────────────────────────────────────────── */
+  .form-field:focus {
+    outline: none;
+    border-color: #c9a96e;
+  }
+
+  /* ── Gold CTA shimmer ─────────────────────────────────────────────────── */
+  .btn-gold {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gold::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 100%
+    );
+    transition: left 0.6s ease;
+  }
+
+  .btn-gold:hover::after {
+    left: 150%;
+  }
+
+  /* ── Hero marble orb rings ────────────────────────────────────────────── */
+  .orb-ring-1 {
+    animation: orbSpin 28s linear infinite;
+  }
+
+  .orb-ring-2 {
+    animation: orbSpin 18s linear infinite reverse;
+  }
+
+  /* ── Hero marquee ─────────────────────────────────────────────────────── */
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── WhatsApp button pulse ───────────────────────────────────────────── */
+  .wa-pulse {
+    animation: waPulse 2.8s ease-out infinite;
+  }
+
+  /* ── Parallax dividers ────────────────────────────────────────────────── */
+
+  /* Desktop: background fixo cria o efeito parallax */
+  .parallax-img {
+    background-attachment: fixed;
+    will-change: background-position;
+  }
+
+  /* Mobile/touch: desativa parallax (iOS não suporta background-attachment: fixed) */
+  @media (max-width: 768px), (hover: none) {
+    .parallax-img {
+      background-attachment: scroll;
+    }
+  }
+}
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+@keyframes orbSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+@keyframes waPulse {
+  0%   { transform: scale(1);   opacity: 0.35; }
+  65%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}

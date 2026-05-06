@@ -1,0 +1,89 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# .htaccess — Genuíno Gran (Hostinger / Apache)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Força HTTPS + canonical sem www  ───────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Redireciona www → sem www
+  RewriteCond %{HTTP_HOST} ^www\.genuinogran\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://genuinogran.com.br/$1 [R=301,L]
+
+  # 2) Força HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # 3) SPA fallback — qualquer URL que não seja arquivo/diretório existente
+  #    é servida pelo index.html (o site usa âncoras, não rotas, mas isso
+  #    cobre eventuais 404 e mantém o comportamento esperado).
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Compressão Gzip ─────────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript text/xml text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf application/font-woff application/font-woff2
+</IfModule>
+
+# Cache do navegador ──────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — sempre revalidar (para deploys novos aparecerem rápido)
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Assets versionados pelo Vite (hash no nome) — cache longo
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+
+  # Imagens
+  ExpiresByType image/jpeg                "access plus 6 months"
+  ExpiresByType image/png                 "access plus 6 months"
+  ExpiresByType image/webp                "access plus 6 months"
+  ExpiresByType image/svg+xml             "access plus 6 months"
+  ExpiresByType image/x-icon              "access plus 6 months"
+
+  # Fontes
+  ExpiresByType font/ttf                  "access plus 1 year"
+  ExpiresByType font/otf                  "access plus 1 year"
+  ExpiresByType font/woff                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # immutable nos assets versionados (build do Vite gera /assets/<hash>)
+  <FilesMatch "\.(js|css|woff2?|ttf|otf|jpg|jpeg|png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML sempre fresco
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Headers de segurança básicos
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# Charset padrão ──────────────────────────────────────────────────────────────
+AddDefaultCharset UTF-8
+
+# Tipos MIME que o Apache às vezes não conhece ────────────────────────────────
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+  AddType application/json .json
+</IfModule>
+
+# Bloquear acesso a arquivos sensíveis ────────────────────────────────────────
+<FilesMatch "(^\.|composer\.(json|lock)|package(-lock)?\.json|\.env)">
+  Require all denied
+</FilesMatch>

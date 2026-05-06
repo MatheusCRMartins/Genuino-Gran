@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Editor & OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Deploy artifacts
+genuino-gran-deploy/
+genuino-gran-deploy.zip
+*.zip
+
+# Briefing files (privado, fica só local)
+BRIEFING_GENUINOGRAN.docx
+BRIEFING_GENUINOGRAN.html
+BRIEFING_CLIENTE_arquivos/
+BRIEFING_GENUINOGRAN com respostas.pdf
+
+# Banco de imagens fonte (já estão otimizadas em public/)
+banco de imagens genuino gran/
+
+# Claude Code workspace
+.claude/
