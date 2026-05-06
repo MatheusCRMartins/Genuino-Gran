@@ -140,14 +140,18 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* Desktop: bento assimétrico */}
+          {/* Desktop: bento assimétrico
+              Linha 1: [p0 col-span-2] [p1 row-span-2]
+              Linha 2: [p2 col-span-2] [p1 cont.]
+              Linha 3: [p3] [p4] [p5]
+              Total = 9 células / 9 ocupadas. */}
           <div
             className="hidden lg:grid grid-cols-3 gap-3"
             style={{ gridTemplateRows: '280px 280px auto' }}
           >
             <Card project={p0} className="col-span-2" priority />
             <Card project={p1} className="row-span-2" />
-            <Card project={p2} className="col-span-1" />
+            <Card project={p2} className="col-span-2" />
             <Card project={p3} className="aspect-[4/3]" />
             <Card project={p4} className="aspect-[4/3]" />
             <Card project={p5} className="aspect-[4/3]" />
