@@ -211,10 +211,10 @@ export default function Hero() {
             >
               <div className="w-px flex-1 bg-gradient-to-b from-transparent via-gold/20 to-transparent" />
               <p
-                className="font-inter text-[9px] tracking-[0.35em] uppercase text-white/20"
+                className="font-inter text-[9px] tracking-[0.35em] uppercase text-white/20 whitespace-nowrap"
                 style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}
               >
-                São Paulo
+                Genuíno Gran
               </p>
               <div className="w-px flex-1 bg-gradient-to-b from-transparent via-gold/20 to-transparent" />
             </div>
