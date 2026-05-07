@@ -3,7 +3,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { LogoMark, LogoWordmark } from './Logo';
 import { TRACKING, WA_URL, BUSINESS } from '../config';
 
-const INITIAL = { nome: '', whatsapp: '', tipo: '', mensagem: '' };
+const INITIAL = { nome: '', whatsapp: '', email: '', tipo: '', mensagem: '' };
 
 function validate(form) {
   const errors = {};
@@ -12,6 +12,9 @@ function validate(form) {
   const digits = form.whatsapp.replace(/\D/g, '');
   if (!digits || digits.length < 10 || digits.length > 11)
     errors.whatsapp = 'Informe um WhatsApp válido com DDD.';
+  // E-mail é opcional, mas se preenchido deve ser válido
+  if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
+    errors.email = 'E-mail inválido.';
   if (!form.tipo)
     errors.tipo = 'Selecione o tipo de projeto.';
   if (!form.mensagem.trim() || form.mensagem.trim().length < 10)
@@ -52,6 +55,8 @@ function MarblePanel() {
         src="/images/marble-texture-2.jpg"
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover"
         style={{ filter: 'brightness(0.32) saturate(0.65)' }}
       />
@@ -184,6 +189,7 @@ export default function ContactForm() {
         body: JSON.stringify({
           Nome: form.nome,
           WhatsApp: form.whatsapp,
+          'E-mail': form.email || '(não informado)',
           'Tipo de Projeto': form.tipo,
           Mensagem: form.mensagem,
         }),
@@ -300,6 +306,18 @@ export default function ContactForm() {
                     />
                   </Field>
                 </div>
+
+                <Field label="E-mail (opcional)" error={errors.email}>
+                  <input
+                    type="email"
+                    className={inputBase}
+                    placeholder="seu@email.com"
+                    value={form.email}
+                    onChange={set('email')}
+                    autoComplete="email"
+                    inputMode="email"
+                  />
+                </Field>
 
                 <Field label="Tipo de Projeto *" error={errors.tipo}>
                   <select

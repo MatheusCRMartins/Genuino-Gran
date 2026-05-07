@@ -186,7 +186,7 @@ export default function Testimonials() {
         className="absolute inset-0 pointer-events-none"
         style={{ opacity: 0.03, mixBlendMode: 'screen' }}
       >
-        <img src="/images/marble-texture-2.jpg" alt="" className="w-full h-full object-cover" />
+        <img src="/images/marble-texture-2.jpg" alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">

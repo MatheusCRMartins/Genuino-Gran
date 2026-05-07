@@ -50,14 +50,14 @@ const PROJECTS = [
 ];
 
 /* ─── Portfolio card ─────────────────────────────────────────────────────── */
-function Card({ project, className = '', priority = false }) {
+function Card({ project, className = '' }) {
   return (
     <article className={`portfolio-card group relative overflow-hidden bg-[#0d0d0d] ${className}`}>
       <div className="portfolio-img absolute inset-0 transition-transform duration-700 ease-out">
         <img
           src={project.src}
           alt={project.alt}
-          loading={priority ? 'eager' : 'lazy'}
+          loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.92) saturate(0.95)' }}
@@ -135,8 +135,8 @@ export default function Portfolio() {
         >
           {/* Mobile: 1 col. Tablet: 2 cols */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:hidden">
-            {PROJECTS.map((p, i) => (
-              <Card key={p.title} project={p} className="aspect-[4/3]" priority={i === 0} />
+            {PROJECTS.map((p) => (
+              <Card key={p.title} project={p} className="aspect-[4/3]" />
             ))}
           </div>
 
@@ -149,7 +149,7 @@ export default function Portfolio() {
             className="hidden lg:grid grid-cols-3 gap-3"
             style={{ gridTemplateRows: '280px 280px auto' }}
           >
-            <Card project={p0} className="col-span-2" priority />
+            <Card project={p0} className="col-span-2" />
             <Card project={p1} className="row-span-2" />
             <Card project={p2} className="col-span-2" />
             <Card project={p3} className="aspect-[4/3]" />

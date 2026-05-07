@@ -42,11 +42,13 @@ function MarbleOrb() {
           `,
         }}
       >
-        {/* Textura de mármore real */}
+        {/* Textura de mármore real (LCP) */}
         <img
           src="/images/marble-swirl.jpg"
           alt=""
           aria-hidden="true"
+          fetchpriority="high"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: 'brightness(0.55) saturate(0.75)', transform: 'scale(1.05)' }}
         />
@@ -146,7 +148,7 @@ export default function Hero() {
 
       {/* Marble texture de fundo — muito sutil */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ opacity: 0.055, mixBlendMode: 'screen' }}>
-        <img src="/images/marble-texture-1.jpg" alt="" className="w-full h-full object-cover" />
+        <img src="/images/marble-texture-1.jpg" alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
       </div>
 
       {/* Subtle dot-grid texture */}
