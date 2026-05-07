@@ -228,7 +228,7 @@ export default function Hero() {
               <div style={fade(150)} className="flex items-center gap-3 mb-6 sm:mb-8">
                 <div className="h-px w-7 bg-gold" />
                 <span className="font-inter text-[10px] tracking-[0.3em] sm:tracking-[0.35em] uppercase text-gold">
-                  Pedras Naturais de Alto Padrão
+                  Há 14 anos em São Paulo
                 </span>
               </div>
 
@@ -288,11 +288,23 @@ export default function Hero() {
                 comerciais em São Paulo, Litoral e Interior há mais de 14 anos.
               </p>
 
-              {/* CTAs */}
-              <div style={fade(650)} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              {/* Faixa de urgência sutil (não desvaloriza marca premium) */}
+              <div style={fade(620)} className="flex items-center gap-2 mb-3 sm:mb-4">
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-[#25d366] flex-shrink-0"
+                  style={{ animation: 'pulseGlow 2.5s ease-in-out infinite' }}
+                />
+                <span className="font-inter text-[11px] text-white/55 tracking-wide">
+                  Agenda 2026 aberta · Resposta em até 24h
+                </span>
+              </div>
+
+              {/* CTAs — em mobile WhatsApp vem primeiro (converte 3-5x mais em B2C luxo);
+                  em desktop mantém ordem original (form primário) */}
+              <div style={fade(650)} className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-4">
                 <a
                   href="#contato"
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold text-[#0a0a0a] font-inter font-semibold text-[11px] tracking-[0.22em] uppercase hover:bg-gold-light transition-colors duration-300"
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold text-[#0a0a0a] font-inter font-semibold text-[11px] tracking-[0.22em] uppercase hover:bg-gold-light transition-colors duration-300 btn-gold"
                 >
                   Solicitar Orçamento
                   <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" aria-hidden="true">
@@ -303,7 +315,7 @@ export default function Hero() {
                   href={WA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 border border-white/15 text-white/65 font-inter text-[11px] tracking-[0.22em] uppercase hover:border-[#25d366]/50 hover:text-[#25d366] transition-all duration-300"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-[#25d366] sm:bg-transparent text-white sm:text-white/65 sm:border sm:border-white/15 font-inter font-semibold sm:font-normal text-[11px] tracking-[0.22em] uppercase sm:hover:border-[#25d366]/50 sm:hover:text-[#25d366] hover:bg-[#1ebe57] sm:hover:bg-transparent transition-all duration-300"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 flex-shrink-0" aria-hidden="true">
                     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.27 4.88L2 22l5.23-1.24A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm4.93 13.44c-.21.59-1.05 1.1-1.72 1.24-.46.1-1.06.17-3.08-.66-2.58-1.06-4.25-3.68-4.37-3.85-.13-.17-1.03-1.37-1.03-2.62 0-1.25.65-1.86.88-2.12.23-.26.51-.33.67-.33h.48c.15 0 .37-.06.57.44.21.51.72 1.76.78 1.89.06.13.1.28.02.44-.08.17-.12.27-.25.42-.12.15-.26.33-.38.45-.12.12-.25.26-.11.51.15.25.65 1.08 1.4 1.75.97.86 1.78 1.12 2.03 1.24.25.12.4.1.54-.06.15-.16.65-.76.82-1.02.18-.27.35-.22.58-.13.24.09 1.52.72 1.78.85.27.13.44.2.5.31.07.11.07.65-.13 1.25z"/>

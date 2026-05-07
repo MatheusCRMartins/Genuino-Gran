@@ -4,7 +4,7 @@ import { LogoMark, LogoWordmark } from './Logo';
 const NAV_LINKS = [
   { href: '#portfolio', label: 'Portfólio' },
   { href: '#servicos', label: 'Serviços' },
-  { href: '#diferenciais', label: 'Diferenciais' },
+  { href: '#sobre', label: 'Sobre' },
   { href: '#contato', label: 'Contato' },
 ];
 

@@ -101,12 +101,17 @@
     </script>
 
     <!-- ══════════════════════════════════════════════════════════════════════
-         RASTREAMENTO DE TRÁFEGO PAGO
-         Descomente e substitua os IDs após criar as contas.
-         Sem esses códigos, conversões de anúncios NÃO serão registradas.
+         RASTREAMENTO DE TRÁFEGO PAGO  ─── COMO ATIVAR ───
+         1. Crie conta GA4 em https://analytics.google.com  → copie o ID (G-XXXXXXXXXX)
+         2. Crie Meta Pixel em https://business.facebook.com → copie o ID (15 dígitos)
+         3. Substitua os 3 placeholders abaixo (G-XXXXXXXXXX e XXXXXXXXXXXXXXX)
+         4. Em cada bloco abaixo, apague as linhas marcadas como "INÍCIO" e "FIM"
+            (são as próprias tags de comentário) para ATIVAR os scripts.
+         O ContactForm já dispara eventos Lead e generate_lead quando o form
+         é enviado com sucesso — funciona automaticamente assim que ativar.
     ══════════════════════════════════════════════════════════════════════ -->
 
-    <!-- ── Google Analytics 4 ───────────────────────────────────────────
+    <!-- ─── INÍCIO Google Analytics 4 (apague esta linha para ativar) ──────
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -114,9 +119,9 @@
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX');
     </script>
-    ── fim GA4 ─────────────────────────────────────────────────────────── -->
+    ─── FIM Google Analytics 4 (apague esta linha para ativar) ─────────── -->
 
-    <!-- ── Meta Pixel (Facebook / Instagram Ads) ────────────────────────
+    <!-- ─── INÍCIO Meta Pixel · Facebook / Instagram Ads (apague esta linha para ativar) ──
     <script>
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -128,7 +133,7 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
-    ── fim Meta Pixel ──────────────────────────────────────────────────── -->
+    ─── FIM Meta Pixel (apague esta linha para ativar) ──────────────────── -->
 
     <!-- ── Fonts ────────────────────────────────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

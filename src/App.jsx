@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Portfolio from './components/Portfolio';
 import Services from './components/Services';
 import Differentials from './components/Differentials';
+import About from './components/About';
 import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
@@ -54,6 +55,7 @@ export default function App() {
 
         <Services />
         <Differentials />
+        <About />
 
         {/* ── Divisor 2: bancada de mármore com flores ── */}
         <ParallaxDivider

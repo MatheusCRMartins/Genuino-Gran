@@ -5,6 +5,7 @@ const NAV = [
   ['#portfolio',    'Portfólio'],
   ['#servicos',     'Serviços'],
   ['#diferenciais', 'Diferenciais'],
+  ['#sobre',        'Sobre'],
   ['#contato',      'Contato'],
 ];
 

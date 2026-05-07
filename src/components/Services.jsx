@@ -6,7 +6,7 @@ const SERVICES = [
     title: 'Pias e Bancadas de Cozinha',
     description:
       'Bancadas e pias sob medida em quartzo, mármore, granito e quartzito. Cuba gourmet ou esculpida em bloco único, com acabamento polido para integração perfeita ao seu projeto.',
-    tag: 'Top 3 Mais Pedidos',
+    tag: 'Mais pedido',
     timeline: 'Entrega em até 10 dias',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
@@ -23,7 +23,7 @@ const SERVICES = [
     title: 'Pias e Lavatórios de Banheiro',
     description:
       'Cubas e pias em pedra natural com design contemporâneo ou clássico. Esculpidas em bloco único, com integração perfeita à bancada e acabamento impecável.',
-    tag: null,
+    tag: 'Bloco único',
     timeline: 'Entrega em até 10 dias',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
@@ -40,7 +40,7 @@ const SERVICES = [
     title: 'Pisos e Revestimentos',
     description:
       'Instalação de pisos em pedra natural para ambientes internos e externos. Travertino, mármore, granito e ardósia cortados com precisão milimétrica.',
-    tag: null,
+    tag: 'Interno e externo',
     timeline: 'Projeto completo em até 20 dias',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
@@ -56,7 +56,7 @@ const SERVICES = [
     title: 'Painéis Esculpidos',
     description:
       'Painéis decorativos e revestimentos de parede em mármore e granito. Frisos, molduras, letreiros e esculturas para projetos residenciais e comerciais de alto padrão.',
-    tag: null,
+    tag: 'Sob medida',
     timeline: 'Projeto completo em até 20 dias',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
