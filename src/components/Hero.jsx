@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { WA_URL } from '../config';
+import PhotoStrip from './PhotoStrip';
 
 /* ─── Marble Orb ─────────────────────────────────────────────────────────── */
 function MarbleOrb() {
@@ -350,6 +351,11 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── Faixa de fotos — mobile only (desktop fica após o Hero no App.jsx) ── */}
+      <div className="lg:hidden">
+        <PhotoStrip />
       </div>
 
       {/* ── Stats bar ── */}

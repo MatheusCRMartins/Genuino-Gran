@@ -8,6 +8,7 @@ import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import ParallaxDivider from './components/ParallaxDivider';
+import PhotoStrip from './components/PhotoStrip';
 import { WA_URL } from './config';
 
 function WhatsAppButton() {
@@ -45,6 +46,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        {/* Desktop: faixa de fotos aparece após o Hero. Mobile: está dentro do Hero, antes dos stats */}
+        <div className="hidden lg:block">
+          <PhotoStrip />
+        </div>
         <Portfolio />
 
         {/* ── Divisor 1: cozinha com ilha de mármore ── */}
