@@ -49,3 +49,10 @@ banco de imagens genuino gran/
 
 # Claude Code workspace
 .claude/
+
+# Arquivos de mídia originais (pesados, não vão para o repositório)
+*.MOV
+*.mov
+*.HEIC
+*.heic
+fotos antonio/

@@ -284,8 +284,8 @@ export default function Hero() {
                 style={fade(500)}
                 className="font-inter text-[14px] text-white/40 leading-relaxed mb-8 sm:mb-10 max-w-sm"
               >
-                Projetos sob medida com acabamento impecável para residências e
-                comerciais em São Paulo, Litoral e Interior há mais de 14 anos.
+                Feito sob medida, com quem entende do que faz. Atendemos residências
+                e comerciais em São Paulo, Litoral e Interior há 14 anos.
               </p>
 
               {/* Faixa de urgência sutil (não desvaloriza marca premium) */}

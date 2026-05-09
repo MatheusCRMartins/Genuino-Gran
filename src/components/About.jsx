@@ -58,7 +58,7 @@ export default function About() {
             <div
               className="absolute z-10 overflow-hidden border-[5px] border-[#0a0a0a] shadow-2xl"
               style={{
-                width: 'clamp(120px, 35%, 180px)',
+                width: 'clamp(160px, 45%, 240px)',
                 aspectRatio: '3 / 4',
                 bottom: '-24px',
                 right: '-12px',
@@ -87,7 +87,7 @@ export default function About() {
             className={`lg:col-span-7 fade-up delay-2 ${textVisible ? 'visible' : ''}`}
           >
             <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
-              Quem somos
+              Conheça nossa história
             </p>
 
             <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-medium text-white title-accent mb-8 lg:mb-10">
@@ -98,7 +98,7 @@ export default function About() {
               <p>
                 Filho de marmorista,{' '}
                 <span className="text-white font-medium">Antonio Roberto</span>{' '}
-                cresceu dentro do setor — seus primeiros contatos com o trabalho
+                cresceu dentro do setor. Seus primeiros contatos com o trabalho
                 foram ainda na infância, ajudando o pai no dia a dia da profissão.
               </p>
               <p>
@@ -130,7 +130,7 @@ export default function About() {
                   Antonio Roberto
                 </p>
                 <p className="font-inter text-[11px] tracking-[0.18em] uppercase text-gold/70 mt-0.5">
-                  Fundador · Mestre Marmorista
+                  Fundador e Mestre Marmorista
                 </p>
               </div>
             </div>

@@ -198,10 +198,10 @@ export default function Testimonials() {
         >
           <div>
             <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
-              O que dizem nossos clientes
+              O que dizem sobre nós
             </p>
             <h2 className="font-playfair text-3xl md:text-4xl font-medium text-white title-accent">
-              Depoimentos
+              Quem já viveu a experiência
             </h2>
           </div>
 

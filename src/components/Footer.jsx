@@ -39,14 +39,14 @@ function PreFooter() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-14 sm:py-20 lg:py-28">
         <div className="max-w-3xl">
           <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-5 sm:mb-6">
-            Pronto para começar?
+            Quer transformar seu ambiente?
           </p>
           <h2 className="font-playfair text-3xl md:text-5xl font-medium text-white leading-tight mb-6 sm:mb-8">
             Seu projeto de mármore{' '}
             <em className="not-italic text-gold">começa com uma conversa</em>
           </h2>
           <p className="font-inter text-[14px] sm:text-[15px] text-white/45 leading-relaxed mb-8 sm:mb-10 max-w-xl">
-            Entre em contato agora e receba um orçamento personalizado. Nossa equipe está pronta para transformar o seu espaço.
+            Manda uma mensagem e a gente já começa a entender o que você precisa. Atendemos todos os dias e respondemos rápido.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
@@ -213,7 +213,7 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="border-t border-white/[0.06] pt-6 sm:pt-7 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
             <p className="font-inter text-[11px] text-white/20 tracking-wide">
-              © {year} Genuíno Gran — Todos os direitos reservados.
+              © {year} Genuíno Gran. Todos os direitos reservados.
             </p>
             <div className="flex items-center gap-2">
               <div className="h-px w-6 bg-gold/20" aria-hidden="true" />

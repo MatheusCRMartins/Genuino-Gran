@@ -117,10 +117,10 @@ export default function Portfolio() {
         >
           <div>
             <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
-              Nosso Trabalho
+              Cada projeto tem uma história
             </p>
             <h2 className="font-playfair text-3xl md:text-4xl font-medium text-white title-accent">
-              Portfólio de Projetos
+              Projetos que já entregamos
             </h2>
           </div>
           <p className="font-inter text-[13px] text-white/35 mt-5 sm:mt-0 sm:max-w-xs sm:text-right leading-relaxed">

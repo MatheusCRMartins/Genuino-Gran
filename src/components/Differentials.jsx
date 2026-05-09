@@ -5,7 +5,7 @@ const ITEMS = [
     num: '01',
     title: 'Acabamento Alto Padrão',
     description:
-      'Cada peça é polida e finalizada com rigor técnico para atingir o nível de excelência que projetos exigem. Mais de 14 anos de experiência em cada detalhe.',
+      'Em 14 anos, aprendemos que a perfeição está nos detalhes que a maioria nem nota. Cada peça sai daqui revisada e aprovada antes de ir pra sua casa.',
     icon: (
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path
@@ -21,7 +21,7 @@ const ITEMS = [
     num: '02',
     title: 'Entrega Rápida',
     description:
-      'Bancadas em até 10 dias e projetos completos em 20 dias. Planejamento detalhado em cada etapa para cumprir o prazo combinado, sem surpresas.',
+      'Combinamos um prazo e cumprimos. Bancadas em até 10 dias, projetos completos em 20. Sem enrolação e sem surpresa no final.',
     icon: (
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <circle cx="14" cy="14" r="11" stroke="#c9a96e" strokeWidth="1.4" />
@@ -33,7 +33,7 @@ const ITEMS = [
     num: '03',
     title: 'Valor Competitivo',
     description:
-      'Cobrimos orçamentos da concorrência sem abrir mão da qualidade. Trabalhamos direto com o cliente, sem atravessadores — você paga pelo que realmente vale.',
+      'Trabalhamos direto com você, sem atravessadores. Nosso preço é justo e, se você trouxer um orçamento menor, a gente conversa. Qualidade não precisa custar absurdo.',
     icon: (
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M14 3v22M19 7.5h-7a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H8" stroke="#c9a96e" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -44,7 +44,7 @@ const ITEMS = [
     num: '04',
     title: 'Garantia de 5 Anos',
     description:
-      '5 anos de garantia com direito a suporte em todos os projetos. Compromisso de longo prazo com a qualidade do trabalho entregue.',
+      'Todo projeto tem 5 anos de garantia. Se aparecer qualquer problema nesse período, a gente resolve. É o nosso compromisso com você depois da entrega.',
     icon: (
       <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
         <path d="M14 2.5l9.5 3.5v8c0 5.5-4 10-9.5 12-5.5-2-9.5-6.5-9.5-12v-8L14 2.5z" stroke="#c9a96e" strokeWidth="1.4" strokeLinejoin="round" />
@@ -77,10 +77,10 @@ export default function Differentials() {
           className={`mb-12 lg:mb-20 fade-up ${headerVisible ? 'visible' : ''}`}
         >
           <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
-            Por que nos escolher
+            Por que a Genuíno Gran
           </p>
           <h2 className="font-playfair text-3xl md:text-4xl font-medium text-white title-accent">
-            Nossos Diferenciais
+            O que nos diferencia
           </h2>
         </div>
 

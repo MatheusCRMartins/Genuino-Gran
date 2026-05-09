@@ -5,7 +5,7 @@ const SERVICES = [
     num: '01',
     title: 'Pias e Bancadas de Cozinha',
     description:
-      'Bancadas e pias sob medida em quartzo, mármore, granito e quartzito. Cuba gourmet ou esculpida em bloco único, com acabamento polido para integração perfeita ao seu projeto.',
+      'Feitas especialmente para o seu espaço, em quartzo, mármore, granito ou quartzito. A cuba pode ser gourmet ou esculpida em bloco único. Cada detalhe pensado pra combinar com o que você tem em mente.',
     tag: 'Mais pedido',
     timeline: 'Entrega em até 10 dias',
     icon: (
@@ -22,7 +22,7 @@ const SERVICES = [
     num: '02',
     title: 'Pias e Lavatórios de Banheiro',
     description:
-      'Cubas e pias em pedra natural com design contemporâneo ou clássico. Esculpidas em bloco único, com integração perfeita à bancada e acabamento impecável.',
+      'Cada cuba é esculpida em bloco único de pedra natural. Você escolhe o estilo, nós garantimos que encaixe perfeitamente com a bancada e o ambiente.',
     tag: 'Bloco único',
     timeline: 'Entrega em até 10 dias',
     icon: (
@@ -39,7 +39,7 @@ const SERVICES = [
     num: '03',
     title: 'Pisos e Revestimentos',
     description:
-      'Instalação de pisos em pedra natural para ambientes internos e externos. Travertino, mármore, granito e ardósia cortados com precisão milimétrica.',
+      'Travertino, mármore, granito, ardósia. Cortamos e instalamos em ambientes internos e externos, com precisão em cada junta e atenção ao rejunte e nivelamento.',
     tag: 'Interno e externo',
     timeline: 'Projeto completo em até 20 dias',
     icon: (
@@ -55,7 +55,7 @@ const SERVICES = [
     num: '04',
     title: 'Painéis Esculpidos',
     description:
-      'Painéis decorativos e revestimentos de parede em mármore e granito. Frisos, molduras, letreiros e esculturas para projetos residenciais e comerciais de alto padrão.',
+      'Para quem quer transformar uma parede em algo que as pessoas param pra admirar. Painéis, frisos, molduras e esculturas em mármore ou granito, do projeto à instalação.',
     tag: 'Sob medida',
     timeline: 'Projeto completo em até 20 dias',
     icon: (
@@ -89,14 +89,14 @@ export default function Services() {
           className={`mb-12 lg:mb-20 fade-up ${headerVisible ? 'visible' : ''}`}
         >
           <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
-            O que Oferecemos
+            Como podemos te ajudar
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-3 lg:gap-4">
             <h2 className="font-playfair text-3xl md:text-4xl font-medium text-white title-accent">
-              Nossos Serviços
+              O que fazemos
             </h2>
             <p className="font-inter text-[13px] text-white/35 lg:max-w-sm leading-relaxed">
-              Cada projeto é tratado de forma exclusiva, do planejamento ao acabamento final.
+              A gente não copia projeto. Cada ambiente recebe atenção e cuidado do início ao fim.
             </p>
           </div>
         </div>

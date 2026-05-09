@@ -223,10 +223,10 @@ export default function ContactForm() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-20 sm:pt-24 pb-8 sm:pb-10">
         <div className={`fade-up ${leftVisible ? 'visible' : ''}`} ref={leftRef}>
           <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
-            Fale Conosco
+            Vamos conversar
           </p>
           <h2 className="font-playfair text-3xl md:text-4xl font-medium text-white title-accent">
-            Solicite seu orçamento gratuito
+            Conta pra gente o seu projeto
           </h2>
         </div>
       </div>
@@ -332,7 +332,7 @@ export default function ContactForm() {
                       color: form.tipo ? '#ffffff' : 'rgba(255,255,255,0.2)',
                     }}
                   >
-                    <option value="" disabled>Selecione o tipo de projeto</option>
+                    <option value="" disabled>O que você quer fazer?</option>
                     <option value="cozinha"  style={{ color: '#000', background: '#fff' }}>Bancada de Cozinha</option>
                     <option value="banheiro" style={{ color: '#000', background: '#fff' }}>Pia / Banheiro</option>
                     <option value="piso"     style={{ color: '#000', background: '#fff' }}>Piso / Revestimento</option>
@@ -345,7 +345,7 @@ export default function ContactForm() {
                   <textarea
                     rows={4}
                     className={`${inputBase} resize-none`}
-                    placeholder="Descreva o projeto: cômodo, dimensões aproximadas, material de preferência..."
+                    placeholder="Me conta mais: qual ambiente, tamanho aproximado, material que você gosta..."
                     value={form.mensagem}
                     onChange={set('mensagem')}
                   />
@@ -391,9 +391,7 @@ export default function ContactForm() {
                   )}
 
                   <p className="font-inter text-[11px] text-white/25 text-center tracking-wide">
-                    Retorno em até <span className="text-white/45">24 horas</span>
-                    {' '}·{' '}
-                    Seus dados estão seguros
+                    A gente responde em até <span className="text-white/45">24 horas</span>. Seus dados ficam só com a gente.
                   </p>
                 </div>
               </form>
