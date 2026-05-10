@@ -58,9 +58,9 @@ export default function App() {
           position="center 35%"
         />
 
+        <About />
         <Services />
         <Differentials />
-        <About />
 
         {/* ── Divisor 2: bancada de mármore com flores ── */}
         <ParallaxDivider
