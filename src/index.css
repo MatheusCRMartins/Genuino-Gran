@@ -175,6 +175,16 @@
 }
 
 /* ── Keyframes ────────────────────────────────────────────────────────────── */
+@keyframes textRise {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1)    translateZ(0); }
+  to   { transform: scale(1.07) translateZ(0); }
+}
+
 @keyframes orbSpin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
