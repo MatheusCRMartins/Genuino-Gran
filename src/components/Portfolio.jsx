@@ -1,9 +1,6 @@
+import { useState, useEffect, useCallback } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-/* ─── Projetos do portfólio ──────────────────────────────────────────────────
- * Imagens em public/images/portfolio/ — todas em uso comercial livre (Unsplash).
- * Substitua pelos arquivos reais conforme o cliente envie fotos próprias.
- */
 const PROJECTS = [
   {
     title: 'Cozinha em Quartzo Branco com Ilha Central',
@@ -49,10 +46,105 @@ const PROJECTS = [
   },
 ];
 
-/* ─── Portfolio card ─────────────────────────────────────────────────────── */
-function Card({ project, className = '' }) {
+/* ─── Lightbox ───────────────────────────────────────────────────────────── */
+function Lightbox({ project, onClose }) {
+  const [visible, setVisible] = useState(false);
+
+  /* Anima entrada */
+  useEffect(() => {
+    const t = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(t);
+  }, []);
+
+  /* Trava scroll da página */
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
+
+  /* Fecha com animação de saída */
+  const close = useCallback(() => {
+    setVisible(false);
+    setTimeout(onClose, 320);
+  }, [onClose]);
+
+  /* Escape fecha */
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [close]);
+
   return (
-    <article className={`portfolio-card group relative overflow-hidden bg-[#0d0d0d] ${className}`}>
+    <div
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8"
+      style={{
+        background: `rgba(4,4,4,${visible ? 0.95 : 0})`,
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+        transition: 'background 320ms ease',
+        cursor: 'zoom-out',
+      }}
+      onClick={close}
+    >
+      {/* Container da imagem */}
+      <div
+        className="relative w-full max-w-4xl"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'scale(1) translateY(0px)' : 'scale(0.88) translateY(24px)',
+          transition: 'opacity 350ms cubic-bezier(0.22,1,0.36,1), transform 350ms cubic-bezier(0.22,1,0.36,1)',
+          cursor: 'default',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Imagem */}
+        <img
+          src={project.src}
+          alt={project.alt}
+          className="w-full object-contain"
+          style={{ maxHeight: '78vh', display: 'block' }}
+        />
+
+        {/* Barra inferior com info */}
+        <div
+          className="absolute bottom-0 inset-x-0 px-5 py-4 sm:px-6 sm:py-5"
+          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 100%)' }}
+        >
+          <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold block mb-1">
+            {project.type} · {project.material}
+          </span>
+          <p className="font-playfair text-lg sm:text-xl text-white leading-snug">
+            {project.title}
+          </p>
+        </div>
+
+        {/* Botão fechar */}
+        <button
+          onClick={close}
+          aria-label="Fechar"
+          className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-black/60 text-white/80 hover:text-white hover:bg-black/90 transition-all duration-200"
+        >
+          <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Card ───────────────────────────────────────────────────────────────── */
+function Card({ project, className = '', onOpen }) {
+  return (
+    <article
+      className={`portfolio-card group relative overflow-hidden bg-[#0d0d0d] cursor-zoom-in ${className}`}
+      onClick={onOpen}
+      role="button"
+      tabIndex={0}
+      aria-label={`Ampliar: ${project.title}`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpen(); }}
+    >
       <div className="portfolio-img absolute inset-0 transition-transform duration-700 ease-out">
         <img
           src={project.src}
@@ -64,14 +156,14 @@ function Card({ project, className = '' }) {
         />
       </div>
 
-      {/* Material label — sempre visível no topo */}
+      {/* Label do material */}
       <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
         <span className="font-inter text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-white/85 bg-black/40 px-2.5 py-1 backdrop-blur-sm">
           {project.material}
         </span>
       </div>
 
-      {/* Overlay — sempre visível em mobile, hover-only em desktop */}
+      {/* Overlay */}
       <div className="portfolio-overlay absolute inset-0 flex flex-col justify-end opacity-100 sm:opacity-0 transition-all duration-500">
         <div
           className="absolute inset-0"
@@ -84,15 +176,12 @@ function Card({ project, className = '' }) {
           <p className="font-playfair text-base sm:text-lg text-white leading-snug mb-3 sm:mb-4">
             {project.title}
           </p>
-          <a
-            href="#contato"
-            className="inline-flex items-center gap-2 font-inter text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/20 px-3 sm:px-4 py-2 group-hover:border-gold/50 group-hover:text-gold transition-all duration-300"
-          >
-            Quero algo assim
+          <span className="inline-flex items-center gap-2 font-inter text-[10px] tracking-[0.2em] uppercase text-white/60 border border-white/20 px-3 sm:px-4 py-2 group-hover:border-gold/50 group-hover:text-gold transition-all duration-300">
+            Toque para ampliar
             <svg viewBox="0 0 12 12" fill="none" className="w-3 h-3" aria-hidden="true">
-              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M1 1h4M1 1v4M11 11H7M11 11V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
             </svg>
-          </a>
+          </span>
         </div>
       </div>
     </article>
@@ -102,7 +191,8 @@ function Card({ project, className = '' }) {
 /* ─── Section ────────────────────────────────────────────────────────────── */
 export default function Portfolio() {
   const [headerRef, headerVisible] = useScrollAnimation(0.2);
-  const [gridRef, gridVisible] = useScrollAnimation(0.05);
+  const [gridRef,   gridVisible]   = useScrollAnimation(0.05);
+  const [selected, setSelected]    = useState(null);
 
   const [p0, p1, p2, p3, p4, p5] = PROJECTS;
 
@@ -110,7 +200,7 @@ export default function Portfolio() {
     <section id="portfolio" className="py-20 sm:py-24 lg:py-32 bg-[#0d0d0d]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        {/* Section header */}
+        {/* Header */}
         <div
           ref={headerRef}
           className={`flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-12 fade-up ${headerVisible ? 'visible' : ''}`}
@@ -128,36 +218,31 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* ── Grid ── */}
-        <div
-          ref={gridRef}
-          className={`fade-up ${gridVisible ? 'visible' : ''}`}
-        >
-          {/* Mobile: 1 col. Tablet: 2 cols */}
+        {/* Grid */}
+        <div ref={gridRef} className={`fade-up ${gridVisible ? 'visible' : ''}`}>
+          {/* Mobile / Tablet */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:hidden">
             {PROJECTS.map((p) => (
-              <Card key={p.title} project={p} className="aspect-[4/3]" />
+              <Card key={p.title} project={p} className="aspect-[4/3]" onOpen={() => setSelected(p)} />
             ))}
           </div>
 
-          {/* Desktop: bento assimétrico
-              Linha 1: [p0 col-span-2] [p1 row-span-2]
-              Linha 2: [p2 col-span-2] [p1 cont.]
-              Linha 3: [p3] [p4] [p5]
-              Total = 9 células / 9 ocupadas. */}
-          <div
-            className="hidden lg:grid grid-cols-3 gap-3"
-            style={{ gridTemplateRows: '280px 280px auto' }}
-          >
-            <Card project={p0} className="col-span-2" />
-            <Card project={p1} className="row-span-2" />
-            <Card project={p2} className="col-span-2" />
-            <Card project={p3} className="aspect-[4/3]" />
-            <Card project={p4} className="aspect-[4/3]" />
-            <Card project={p5} className="aspect-[4/3]" />
+          {/* Desktop bento */}
+          <div className="hidden lg:grid grid-cols-3 gap-3" style={{ gridTemplateRows: '280px 280px auto' }}>
+            <Card project={p0} className="col-span-2" onOpen={() => setSelected(p0)} />
+            <Card project={p1} className="row-span-2" onOpen={() => setSelected(p1)} />
+            <Card project={p2} className="col-span-2" onOpen={() => setSelected(p2)} />
+            <Card project={p3} className="aspect-[4/3]" onOpen={() => setSelected(p3)} />
+            <Card project={p4} className="aspect-[4/3]" onOpen={() => setSelected(p4)} />
+            <Card project={p5} className="aspect-[4/3]" onOpen={() => setSelected(p5)} />
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {selected && (
+        <Lightbox project={selected} onClose={() => setSelected(null)} />
+      )}
     </section>
   );
 }
