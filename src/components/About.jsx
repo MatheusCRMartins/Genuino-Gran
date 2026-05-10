@@ -29,7 +29,7 @@ export default function About() {
           {/* ── Coluna das fotos ────────────────────────────────────────── */}
           <div
             ref={photoRef}
-            className={`order-2 lg:order-1 lg:col-span-5 relative fade-up ${photoVisible ? 'visible' : ''}`}
+            className={`hidden lg:block lg:col-span-5 relative fade-up ${photoVisible ? 'visible' : ''}`}
           >
             {/* Linha dourada vertical */}
             <div
@@ -93,6 +93,22 @@ export default function About() {
             <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-medium text-white title-accent mb-8 lg:mb-10">
               Da bancada do pai ao alto padrão de São Paulo
             </h2>
+
+            {/* Foto — mobile only, entre o título e o texto */}
+            <div className="lg:hidden relative -mx-6 mb-8 overflow-hidden">
+              <img
+                src="/images/antonio/antonio-1.jpg"
+                alt="Antonio Roberto, fundador da Genuíno Gran"
+                className="w-full object-cover"
+                style={{ aspectRatio: '4/3', objectPosition: '50% 25%' }}
+              />
+              {/* Linha dourada no topo */}
+              <div
+                className="absolute top-0 left-0 w-px h-20 pointer-events-none"
+                style={{ background: 'linear-gradient(to bottom, #c9a96e, transparent)' }}
+                aria-hidden="true"
+              />
+            </div>
 
             <div className="flex flex-col gap-5 font-inter text-[15px] sm:text-[16px] text-white/65 leading-relaxed mb-8">
               <p>
