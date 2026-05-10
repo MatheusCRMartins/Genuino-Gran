@@ -16,7 +16,7 @@ const PHOTOS = [
 
 const TRACK = [...PHOTOS, ...PHOTOS];
 
-const SPEED = 0.03; // px por ms — ajuste aqui para mais/menos rápido
+const SPEED = 0.012; // px por ms — ajuste aqui para mais/menos rápido
 
 export default function PhotoStrip() {
   const trackRef     = useRef(null);
