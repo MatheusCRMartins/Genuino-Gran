@@ -29,7 +29,7 @@ export default function About() {
           {/* ── Coluna das fotos ────────────────────────────────────────── */}
           <div
             ref={photoRef}
-            className={`hidden lg:block lg:col-span-5 relative fade-up ${photoVisible ? 'visible' : ''}`}
+            className={`max-lg:!hidden lg:col-span-5 relative fade-up ${photoVisible ? 'visible' : ''}`}
           >
             {/* Linha dourada vertical */}
             <div
