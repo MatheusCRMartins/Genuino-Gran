@@ -97,13 +97,13 @@ export default function About() {
             {/* Foto — mobile only, entre o título e o texto */}
             <div
               className="lg:hidden relative -mx-6 mb-8 overflow-hidden"
-              style={{ height: 'clamp(320px, 90vw, 460px)' }}
+              style={{ aspectRatio: '3/4' }}
             >
               <img
                 src="/images/antonio/antonio-1.jpg"
                 alt="Antonio Roberto, fundador da Genuíno Gran"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 8%' }}
+                style={{ objectPosition: '50% 38%' }}
               />
 
               {/* Gradiente inferior — funde com o fundo escuro */}
