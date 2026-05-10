@@ -229,7 +229,7 @@ export default function Hero() {
               <div style={fade(150)} className="flex items-center gap-3 mb-6 sm:mb-8">
                 <div className="h-px w-7 bg-gold" />
                 <span className="font-inter text-[10px] tracking-[0.3em] sm:tracking-[0.35em] uppercase text-gold">
-                  Há 14 anos em São Paulo
+                  14 anos lapidando cada detalhe
                 </span>
               </div>
 
