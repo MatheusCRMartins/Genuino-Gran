@@ -29,7 +29,7 @@ export default function About() {
           {/* ── Coluna das fotos ────────────────────────────────────────── */}
           <div
             ref={photoRef}
-            className={`lg:col-span-5 relative fade-up ${photoVisible ? 'visible' : ''}`}
+            className={`order-2 lg:order-1 lg:col-span-5 relative fade-up ${photoVisible ? 'visible' : ''}`}
           >
             {/* Linha dourada vertical */}
             <div
@@ -84,7 +84,7 @@ export default function About() {
           {/* ── Coluna de texto ─────────────────────────────────────────── */}
           <div
             ref={textRef}
-            className={`lg:col-span-7 fade-up delay-2 ${textVisible ? 'visible' : ''}`}
+            className={`order-1 lg:order-2 lg:col-span-7 fade-up delay-2 ${textVisible ? 'visible' : ''}`}
           >
             <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
               Conheça nossa história
