@@ -95,16 +95,27 @@ export default function About() {
             </h2>
 
             {/* Foto — mobile only, entre o título e o texto */}
-            <div className="lg:hidden relative -mx-6 mb-8 overflow-hidden">
+            <div
+              className="lg:hidden relative -mx-6 mb-8 overflow-hidden"
+              style={{ height: 'clamp(320px, 90vw, 460px)' }}
+            >
               <img
                 src="/images/antonio/antonio-1.jpg"
                 alt="Antonio Roberto, fundador da Genuíno Gran"
-                className="w-full object-cover"
-                style={{ aspectRatio: '4/3', objectPosition: '50% 25%' }}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: '50% 18%' }}
               />
-              {/* Linha dourada no topo */}
+
+              {/* Gradiente inferior — funde com o fundo escuro */}
               <div
-                className="absolute top-0 left-0 w-px h-20 pointer-events-none"
+                className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, #0a0a0a 0%, transparent 100%)' }}
+                aria-hidden="true"
+              />
+
+              {/* Linha dourada vertical no canto esquerdo */}
+              <div
+                className="absolute top-0 left-6 w-px h-16 pointer-events-none"
                 style={{ background: 'linear-gradient(to bottom, #c9a96e, transparent)' }}
                 aria-hidden="true"
               />
