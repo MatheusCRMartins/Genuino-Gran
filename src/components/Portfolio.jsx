@@ -106,19 +106,6 @@ function Lightbox({ project, onClose }) {
           style={{ maxHeight: '78vh', display: 'block' }}
         />
 
-        {/* Barra inferior com info */}
-        <div
-          className="absolute bottom-0 inset-x-0 px-5 py-4 sm:px-6 sm:py-5"
-          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, transparent 100%)' }}
-        >
-          <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold block mb-1">
-            {project.type} · {project.material}
-          </span>
-          <p className="font-playfair text-lg sm:text-xl text-white leading-snug">
-            {project.title}
-          </p>
-        </div>
-
         {/* Botão fechar */}
         <button
           onClick={close}
