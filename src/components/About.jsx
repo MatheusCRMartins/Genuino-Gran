@@ -24,7 +24,7 @@ export default function About() {
         style={{ background: 'radial-gradient(ellipse at 5% 90%, rgba(201,169,110,0.04) 0%, transparent 50%)' }} />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 xl:gap-x-20 gap-y-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 xl:gap-x-20 gap-y-16 lg:items-stretch">
 
           {/* ── Coluna das fotos ────────────────────────────────────────── */}
           <div
@@ -84,7 +84,7 @@ export default function About() {
           {/* ── Coluna de texto ─────────────────────────────────────────── */}
           <div
             ref={textRef}
-            className={`order-1 lg:order-2 lg:col-span-7 fade-up delay-2 ${textVisible ? 'visible' : ''}`}
+            className={`order-1 lg:order-2 lg:col-span-7 lg:flex lg:flex-col fade-up delay-2 ${textVisible ? 'visible' : ''}`}
           >
             <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-gold mb-4">
               Conheça nossa história
@@ -161,6 +161,9 @@ export default function About() {
                 </p>
               </div>
             </div>
+
+            {/* Espaçador — empurra stats e CTA para baixo no desktop */}
+            <div className="hidden lg:block lg:flex-1" />
 
             {/* Stats 2×2 */}
             <div className="grid grid-cols-2 gap-3 mb-5">
