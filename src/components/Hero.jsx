@@ -228,11 +228,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Faixa de fotos — mobile only ── */}
-      <div className="relative z-20 lg:hidden">
-        <PhotoStrip />
-      </div>
-
       {/* ══════════════════════════════════════════════════════════════════════
           STATS BAR
       ══════════════════════════════════════════════════════════════════════ */}
@@ -267,6 +262,11 @@ export default function Hero() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* ── Faixa de fotos — mobile only ── */}
+      <div className="relative z-20 lg:hidden">
+        <PhotoStrip />
       </div>
 
       {/* ── Marquee ── */}
