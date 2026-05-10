@@ -103,7 +103,7 @@ export default function About() {
                 src="/images/antonio/antonio-1.jpg"
                 alt="Antonio Roberto, fundador da Genuíno Gran"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 18%' }}
+                style={{ objectPosition: '50% 8%' }}
               />
 
               {/* Gradiente inferior — funde com o fundo escuro */}
