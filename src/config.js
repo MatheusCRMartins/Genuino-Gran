@@ -39,7 +39,7 @@ export const WA_URL = `https://wa.me/${BUSINESS.whatsapp}?text=${WA_MSG}`;
  *   Formspree:  https://formspree.io          → crie um form → copie o ID da URL
  */
 export const TRACKING = {
-  ga4Id:          'G-XXXXXXXXXX',   // ← substitua pelo ID do Google Analytics 4
+  ga4Id:          'G-68DNKCETG3',   // GA4 ativo · stream "Genuíno Gran"
   metaPixelId:    'XXXXXXXXXXXXXXX', // ← substitua pelo ID do Meta Pixel
   formspreeId:    'xrejlgvj',        // https://formspree.io/f/xrejlgvj
 };
