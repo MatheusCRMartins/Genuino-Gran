@@ -137,11 +137,18 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Headline — muda com o slide, animação de entrada por linha */}
-          <h1 key={textKey} className="mb-5 sm:mb-7">
+          {/* Headline — muda com o slide, animação de entrada por linha.
+              aria-label garante que crawlers/screen readers leiam como uma
+              frase contínua, mesmo o visual sendo quebrado em múltiplos spans. */}
+          <h1
+            key={textKey}
+            className="mb-5 sm:mb-7"
+            aria-label={slide.lines.join(' ')}
+          >
             {slide.lines.map((line, idx) => (
               <span
                 key={idx}
+                aria-hidden="true"
                 className="block font-playfair font-medium text-white leading-[1.08] tracking-tight"
                 style={{
                   fontSize: 'clamp(2.8rem, 7.5vw, 7rem)',
