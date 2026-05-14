@@ -237,18 +237,6 @@ function Hero() {
               <em className="not-italic text-gold">sob medida em 10 dias</em>
             </h1>
 
-            {/* Mini review — mobile only, aproveita a foto já visível */}
-            <div className="lg:hidden flex items-center gap-2.5 mb-5 px-3 py-2 border border-gold/20 bg-black/40 backdrop-blur-sm w-fit">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} viewBox="0 0 12 12" fill="#c9a96e" className="w-3 h-3" aria-hidden="true">
-                    <path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9 2.5 10.5l.5-3.5L.5 4.5 4 4z" />
-                  </svg>
-                ))}
-              </div>
-              <span className="font-inter text-xs text-white/70">5.0 · "Acabamento perfeito." — Larissa P.</span>
-            </div>
-
             <p className="font-inter text-[15px] text-white/70 lg:text-white/55 leading-relaxed mb-7 max-w-lg">
               14 anos de experiência · +4 mil projetos entregues · garantia de 5 anos · sem taxa de deslocamento
             </p>
