@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { LogoMark, LogoWordmark } from './Logo';
 import { TRACKING, WA_URL, BUSINESS } from '../config';
@@ -411,7 +412,10 @@ export default function ContactForm() {
                   </a>
 
                   <p className="font-inter text-[11px] text-white/25 text-center tracking-wide">
-                    A gente responde em até <span className="text-white/45">24 horas</span>. Seus dados ficam só com a gente.
+                    A gente responde em até <span className="text-white/45">24 horas</span>. Seus dados ficam só com a gente.{' '}
+                    <Link to="/politica-de-privacidade" className="underline underline-offset-2 hover:text-white/45 transition-colors">
+                      Privacidade
+                    </Link>
                   </p>
                 </div>
               </form>

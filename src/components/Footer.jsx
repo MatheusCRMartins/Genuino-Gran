@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { LogoMark, LogoWordmark } from './Logo';
 import { WA_URL, BUSINESS, SOCIAL } from '../config';
 
@@ -215,7 +216,13 @@ export default function Footer() {
             <p className="font-inter text-[11px] text-white/20 tracking-wide">
               © {year} Genuíno Gran. Todos os direitos reservados.
             </p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
+              <Link
+                to="/politica-de-privacidade"
+                className="font-inter text-[11px] text-white/20 hover:text-white/40 transition-colors tracking-wide"
+              >
+                Política de Privacidade
+              </Link>
               <div className="h-px w-6 bg-gold/20" aria-hidden="true" />
               <p className="font-inter text-[11px] text-white/15 tracking-[0.15em] uppercase">
                 Mármore &amp; Granito · São Paulo, SP

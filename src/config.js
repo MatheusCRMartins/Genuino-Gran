@@ -40,6 +40,6 @@ export const WA_URL = `https://wa.me/${BUSINESS.whatsapp}?text=${WA_MSG}`;
  */
 export const TRACKING = {
   ga4Id:          'G-68DNKCETG3',   // GA4 ativo · stream "Genuíno Gran"
-  metaPixelId:    'XXXXXXXXXXXXXXX', // ← substitua pelo ID do Meta Pixel
+  metaPixelId:    '980929907635898', // Meta Pixel ativo
   formspreeId:    'xrejlgvj',        // https://formspree.io/f/xrejlgvj
 };
