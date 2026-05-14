@@ -114,23 +114,36 @@ function LeadForm({ id = 'lead-form' }) {
 }
 
 // ── LP Header ──────────────────────────────────────────────────────────────────
+// Logo começa na esquerda (scroll=0) e desliza para o centro (scroll=380px),
+// sincronizado com o aparecimento do sticky bar no fundo.
 function LPHeader() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => setProgress(Math.min(window.scrollY / 380, 1));
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // left: de 24px (padding) até 50% do container
+  // translateX: de 0% até -50% do próprio elemento (técnica clássica de centralização)
+  const logoLeft = `calc(${24 * (1 - progress)}px + ${progress * 50}%)`;
+  const logoTranslate = `translateX(-${progress * 50}%)`;
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-10 py-4 bg-[#0a0a0a]/80 backdrop-blur-sm border-b border-white/[0.06]">
-      <Link to="/" className="flex items-center gap-2.5" aria-label="Ir para o site da Genuíno Gran">
+    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-[#0a0a0a]/80 backdrop-blur-sm border-b border-white/[0.06]">
+      <Link
+        to="/"
+        aria-label="Genuíno Gran"
+        className="absolute top-1/2 flex items-center gap-2.5"
+        style={{
+          left: logoLeft,
+          transform: `${logoTranslate} translateY(-50%)`,
+        }}
+      >
         <LogoMark className="h-7 w-auto flex-shrink-0" color="white" />
         <LogoWordmark className="h-[10px] w-auto" color="white" />
       </Link>
-      <a
-        href={WA_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-2 px-5 py-2.5 bg-[#25d366] text-white font-inter font-semibold text-xs tracking-wide hover:brightness-110 transition-all"
-      >
-        <span className="w-4 h-4 flex-shrink-0 text-white">{WA_ICON}</span>
-        <span className="hidden sm:inline">Chamar no WhatsApp</span>
-        <span className="sm:hidden">WhatsApp</span>
-      </a>
     </header>
   );
 }
