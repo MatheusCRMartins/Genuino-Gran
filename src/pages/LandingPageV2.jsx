@@ -11,16 +11,14 @@
  * converte mais. A perdedora é descartada após 1-2 semanas de dados.
  */
 
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { LogoMark, LogoWordmark } from '../components/Logo';
 import { WA_URL, BUSINESS, TRACKING } from '../config';
 import Hero3DParallax from '../components/lp/Hero3DParallax';
 import BeforeAfterSlider from '../components/lp/BeforeAfterSlider';
-
-// Three.js só carrega quando o usuário rola até a seção 3D (intersection)
-const MarbleScene3D = lazy(() => import('../components/lp/MarbleScene3D'));
+import CoverFlowGallery from '../components/lp/CoverFlowGallery';
 
 const WA_ICON = (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -202,10 +200,10 @@ function HeroV2() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative pt-[68px] min-h-[100svh] lg:min-h-screen bg-[#0a0a0a] overflow-hidden">
+    <section className="relative pt-[68px] lg:min-h-screen bg-[#0a0a0a] overflow-hidden">
 
       {/* MOBILE: foto com paralaxe 3D acima do conteúdo */}
-      <div className="lg:hidden relative w-full overflow-hidden" style={{ height: '50vh', minHeight: '360px' }}>
+      <div className="lg:hidden relative w-full overflow-hidden" style={{ height: '46vh', minHeight: '320px', maxHeight: '420px' }}>
         <Hero3DParallax
           imageSrc="/images/portfolio/cozinha-quartzo-pendentes.jpg"
           imageAlt="Bancada de cozinha em mármore — projeto Genuíno Gran"
@@ -217,7 +215,7 @@ function HeroV2() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-center min-h-[calc(100vh-68px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-center lg:min-h-[calc(100vh-68px)]">
 
           {/* Coluna esquerda: conteúdo */}
           <motion.div
@@ -325,14 +323,14 @@ function BeforeAfterSection() {
         >
           <BeforeAfterSlider
             before={{
-              src: '/images/portfolio/cozinha-bancada-preta.jpg',
-              alt: 'Cozinha antes da reforma',
+              src: '/images/before-after/cozinha-antes.jpg',
+              alt: 'Cozinha antiga com bancada de fórmica e armários de madeira velha',
             }}
             after={{
-              src: '/images/portfolio/cozinha-quartzo-pendentes.jpg',
-              alt: 'Cozinha depois da reforma com bancada em mármore Genuíno Gran',
+              src: '/images/before-after/cozinha-depois.jpg',
+              alt: 'Cozinha luxuosa com bancada em mármore branco e detalhes dourados — Genuíno Gran',
             }}
-            initial={50}
+            initial={48}
           />
         </motion.div>
 
@@ -352,8 +350,8 @@ function BeforeAfterSection() {
   );
 }
 
-// ── Cena 3D — bancada interativa ───────────────────────────────────────────────
-function Marble3DSection() {
+// ── Cover Flow — galeria 3D de projetos reais ──────────────────────────────────
+function CoverFlowSection() {
   return (
     <section className="relative py-20 sm:py-24 bg-[#0a0a0a] overflow-hidden">
       {/* Glow gold ambient */}
@@ -369,16 +367,16 @@ function Marble3DSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={stagger}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
           <motion.p variants={fadeUp} className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold mb-3">
-            Explore o produto
+            Galeria de projetos
           </motion.p>
           <motion.h2 variants={fadeUp} className="font-playfair text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-3">
-            Cada bancada é uma peça única
+            Mais de 4 mil projetos entregues
           </motion.h2>
           <motion.p variants={fadeUp} className="font-inter text-sm text-white/45 max-w-xl mx-auto">
-            Modelo 3D interativo. Arraste para girar e ver os detalhes do material.
+            Conheça alguns dos trabalhos realizados em São Paulo, Litoral e Interior.
           </motion.p>
         </motion.div>
 
@@ -387,25 +385,10 @@ function Marble3DSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full border border-white/[0.07]"
-          style={{
-            height: '480px',
-            background: 'linear-gradient(145deg, #111 0%, #0a0a0a 100%)',
-            boxShadow: '0 24px 80px rgba(0,0,0,0.5)',
-          }}
+          className="relative w-full"
+          style={{ height: 'clamp(440px, 60vw, 560px)' }}
         >
-          <Suspense
-            fallback={
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-8 h-8 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />
-                  <p className="font-inter text-[10px] tracking-widest uppercase text-white/40">Carregando 3D</p>
-                </div>
-              </div>
-            }
-          >
-            <MarbleScene3D />
-          </Suspense>
+          <CoverFlowGallery />
         </motion.div>
       </div>
     </section>
@@ -702,7 +685,7 @@ export default function LandingPageV2() {
       <SocialProof />
       <BeforeAfterSection />
       <Process />
-      <Marble3DSection />
+      <CoverFlowSection />
       <Testimonial />
       <Differentials />
       <FormSection />
