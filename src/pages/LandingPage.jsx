@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoMark, LogoWordmark } from '../components/Logo';
 import { WA_URL, BUSINESS, TRACKING } from '../config';
@@ -418,18 +418,55 @@ const GALLERY = [
 ];
 
 function MobileGallery() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const scrollerRef = useRef(null);
+  const itemRefs = useRef([]);
+
+  // Rastreia qual card está mais visível usando IntersectionObserver no scroll horizontal
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pega a entry com maior intersection ratio (card mais visível)
+        let best = { ratio: 0, idx: 0 };
+        entries.forEach((e) => {
+          const idx = Number(e.target.dataset.idx);
+          if (e.intersectionRatio > best.ratio) {
+            best = { ratio: e.intersectionRatio, idx };
+          }
+        });
+        if (best.ratio > 0.5) setActiveIdx(best.idx);
+      },
+      { root: scroller, threshold: [0.25, 0.5, 0.75, 1] }
+    );
+
+    itemRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  // Clique no dot pula pra o card correspondente
+  const goTo = (i) => {
+    const el = itemRefs.current[i];
+    if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  };
+
   return (
     <div className="lg:hidden py-8 bg-[#0a0a0a] overflow-hidden">
       <p className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold/50 text-center mb-5 px-6">
-        Nossos projetos
+        Nossos projetos · arraste para o lado
       </p>
       <div
-        className="flex gap-3 overflow-x-auto px-6 pb-3"
-        style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        ref={scrollerRef}
+        className="flex gap-3 overflow-x-auto px-6 pb-3 no-scrollbar"
+        style={{ scrollSnapType: 'x mandatory' }}
       >
-        {GALLERY.map((photo) => (
+        {GALLERY.map((photo, i) => (
           <div
             key={photo.src}
+            ref={(el) => (itemRefs.current[i] = el)}
+            data-idx={i}
             className="relative flex-shrink-0 overflow-hidden"
             style={{ width: '68vw', aspectRatio: '3/4', scrollSnapAlign: 'start' }}
           >
@@ -448,10 +485,18 @@ function MobileGallery() {
           </div>
         ))}
       </div>
-      {/* Indicador de scroll */}
-      <div className="flex justify-center gap-1.5 mt-4">
+      {/* Indicador dinâmico — acompanha o scroll, dot ativo expande */}
+      <div className="flex justify-center gap-1.5 mt-4" role="tablist" aria-label="Galeria de projetos">
         {GALLERY.map((_, i) => (
-          <div key={i} className={`rounded-full transition-all ${i === 0 ? 'w-4 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-white/20'}`} />
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Ir para projeto ${i + 1}`}
+            aria-selected={activeIdx === i}
+            className={`rounded-full transition-all duration-300 ${
+              activeIdx === i ? 'w-5 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
+            }`}
+          />
         ))}
       </div>
     </div>

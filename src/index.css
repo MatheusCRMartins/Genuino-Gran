@@ -197,6 +197,15 @@
   .hero-scroll-hint {
     animation: scrollHintBounce 2.2s ease-in-out infinite;
   }
+
+  /* Esconde scrollbar mantendo funcionalidade (carrosseis horizontais) */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* ── Keyframes ────────────────────────────────────────────────────────────── */
