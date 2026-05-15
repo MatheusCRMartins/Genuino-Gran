@@ -229,6 +229,11 @@
   50%      { transform: translateY(6px); }
 }
 
+@keyframes beforeAfterHint {
+  0%, 100% { opacity: 0.9; }
+  50%      { opacity: 0.5; }
+}
+
 @keyframes kenBurns {
   from { transform: scale(1)    translateZ(0); }
   to   { transform: scale(1.07) translateZ(0); }
