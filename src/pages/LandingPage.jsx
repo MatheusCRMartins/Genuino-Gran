@@ -200,7 +200,7 @@ function Hero() {
           alt=""
           className="w-full h-full object-cover object-center"
           loading="eager"
-          fetchPriority="high"
+          fetchpriority="high"
         />
         {/* Gradiente cinematográfico: imagem visível no topo, texto legível na base */}
         <div
@@ -224,44 +224,10 @@ function Hero() {
 
           {/* Conteúdo */}
           <div className="lg:py-20">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 border border-gold/30 bg-black/30 lg:bg-gold/5 mb-5 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
-              <span className="font-inter text-[10px] tracking-[0.25em] uppercase text-gold">
-                Grande SP · Litoral · Interior
-              </span>
-            </div>
-
-            <h1 className="font-playfair text-[2.1rem] sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-medium text-white leading-[1.18] mb-5">
+            <h1 className="font-playfair text-[2.1rem] sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-medium text-white leading-[1.18] mb-7 lg:mb-8">
               Bancada de cozinha em mármore{' '}
               <em className="not-italic text-gold">sob medida em 10 dias</em>
             </h1>
-
-            <p className="font-inter text-[15px] text-white/70 lg:text-white/55 leading-relaxed mb-7 max-w-lg">
-              14 anos de experiência · +4 mil projetos entregues · garantia de 5 anos · sem taxa de deslocamento
-            </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-2 mb-7">
-              {[
-                { v: '14', s: '+',     l: 'Anos'          },
-                { v: '4',  s: 'mil+',  l: 'Projetos'      },
-                { v: '5',  s: ' anos', l: 'Garantia'      },
-                { v: '0',  s: ' taxa', l: 'Deslocamento'   },
-              ].map((item) => (
-                <div
-                  key={item.l}
-                  className="text-center py-3 border border-white/10"
-                  style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(4px)' }}
-                >
-                  <div className="flex items-baseline justify-center gap-0.5">
-                    <span className="font-playfair text-xl font-semibold text-gold leading-none">{item.v}</span>
-                    <span className="font-playfair text-xs text-gold/65 leading-none">{item.s}</span>
-                  </div>
-                  <p className="font-inter text-[9px] text-white/40 tracking-wide mt-1">{item.l}</p>
-                </div>
-              ))}
-            </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 mb-5">
@@ -300,7 +266,7 @@ function Hero() {
                 alt="Bancada de cozinha em quartzo branco — projeto Genuíno Gran"
                 className="w-full h-full object-cover"
                 loading="eager"
-                fetchPriority="high"
+                fetchpriority="high"
               />
               <div
                 className="absolute inset-0 pointer-events-none"
