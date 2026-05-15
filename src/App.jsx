@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Home from './pages/Home';
 import LandingPage from './pages/LandingPage';
+import ThankYou from './pages/ThankYou';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
 
@@ -28,6 +29,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/orcamento" element={<LandingPage />} />
+        <Route path="/orcamento/obrigado" element={<ThankYou />} />
         <Route
           path="/orcamento-v2"
           element={
