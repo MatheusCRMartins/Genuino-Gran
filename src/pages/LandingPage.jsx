@@ -62,7 +62,7 @@ function LeadForm({ id = 'lead-form' }) {
         <div>
           <p className="font-playfair text-2xl text-white mb-1">Recebemos seu contato!</p>
           <p className="font-inter text-sm text-white/45">
-            Retornaremos em até <strong className="text-white/70">24 horas</strong>.
+            Retornaremos em até <strong className="text-white/70">2 minutos</strong>.
           </p>
         </div>
       </div>
@@ -104,7 +104,7 @@ function LeadForm({ id = 'lead-form' }) {
         )}
       </button>
       <p className="font-inter text-[11px] text-white/25 text-center leading-relaxed">
-        Respondemos em até 24h · Seus dados não são compartilhados.{' '}
+        Respondemos em até 2 minutos · Seus dados não são compartilhados.{' '}
         <Link to="/politica-de-privacidade" className="underline underline-offset-2 hover:text-white/45 transition-colors">
           Privacidade
         </Link>
@@ -294,7 +294,7 @@ function Hero() {
                 aria-hidden="true"
               />
               <p className="font-inter text-[12px] text-white/55 leading-snug">
-                Resposta em até <strong className="text-white/85 font-medium">24h</strong> · Sem taxa de deslocamento
+                Resposta em até <strong className="text-white/85 font-medium">2 minutos</strong> · Sem taxa de deslocamento
               </p>
             </div>
           </div>
