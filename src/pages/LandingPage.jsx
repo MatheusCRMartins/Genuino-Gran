@@ -189,100 +189,163 @@ function StickyBar() {
 }
 
 // ── Hero ───────────────────────────────────────────────────────────────────────
+// Estilo: editorial premium · prova visual acima da dobra · CTA dominante.
+// Mobile: imagem na metade superior com mínimo overlay (foto vende), conteúdo
+//   na metade inferior com elementos editoriais (linha dourada, badge de prova).
+// Desktop: imagem à direita com card de depoimento sobreposto.
 function Hero() {
   return (
-    <section className="relative pt-16 min-h-screen flex items-end lg:items-center bg-[#0a0a0a] overflow-hidden">
+    <section className="relative pt-16 min-h-[100svh] lg:min-h-screen flex flex-col lg:flex-row lg:items-center bg-[#0a0a0a] overflow-hidden">
 
-      {/* Imagem de fundo — mobile: full-screen imersivo */}
-      <div className="lg:hidden absolute inset-0" aria-hidden="true">
+      {/* ── MOBILE: imagem como banner superior protagonista ── */}
+      <div
+        className="lg:hidden relative w-full overflow-hidden"
+        style={{ height: '52vh', minHeight: '380px' }}
+      >
         <img
           src="/images/portfolio/cozinha-quartzo-pendentes.jpg"
-          alt=""
+          alt="Bancada de cozinha em mármore — projeto Genuíno Gran"
           className="w-full h-full object-cover object-center"
           loading="eager"
           fetchpriority="high"
         />
-        {/* Gradiente cinematográfico: imagem visível no topo, texto legível na base */}
+        {/* Vinheta sutil pra dar profundidade, sem matar a foto */}
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to bottom, rgba(10,10,10,0.08) 0%, rgba(10,10,10,0.25) 30%, rgba(10,10,10,0.78) 58%, rgba(10,10,10,0.97) 80%, #0a0a0a 100%)',
-          }}
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{ boxShadow: 'inset 0 -80px 80px -20px rgba(10,10,10,0.95), inset 0 0 100px rgba(10,10,10,0.35)' }}
         />
+        {/* Trust badge flutuante no canto — proof visual acima da dobra */}
+        <div className="absolute top-5 right-5 flex items-center gap-1.5 px-3 py-1.5 bg-[#0a0a0a]/85 backdrop-blur-sm border border-gold/25">
+          <div className="flex gap-0.5" aria-hidden="true">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} viewBox="0 0 12 12" fill="#c9a96e" className="w-2.5 h-2.5">
+                <path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9 2.5 10.5l.5-3.5L.5 4.5 4 4z" />
+              </svg>
+            ))}
+          </div>
+          <span className="font-inter text-[10px] tracking-wide text-white/85">5.0 Google</span>
+        </div>
       </div>
 
-      {/* Glow lateral — desktop */}
+      {/* Glow ambient — desktop */}
       <div
         className="hidden lg:block absolute inset-0 pointer-events-none"
         aria-hidden="true"
-        style={{ background: 'radial-gradient(ellipse at 5% 50%, rgba(201,169,110,0.07) 0%, transparent 55%)' }}
+        style={{ background: 'radial-gradient(ellipse at 10% 50%, rgba(201,169,110,0.08) 0%, transparent 55%)' }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-10 lg:py-0 w-full">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          {/* Conteúdo */}
-          <div className="lg:py-20">
-            <h1 className="font-playfair text-[2.1rem] sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-medium text-white leading-[1.18] mb-7 lg:mb-8">
-              Bancada de cozinha em mármore{' '}
-              <em className="not-italic text-gold">sob medida em 10 dias</em>
+          {/* ── Coluna de conteúdo ── */}
+          <div className="pt-8 pb-10 lg:py-24">
+
+            {/* Pre-headline editorial — linha dourada + caracteres tracked
+                Sinal visual de "marca premium" + escassez sutil sem desvalorizar */}
+            <div className="flex items-center gap-3 mb-6 lg:mb-8">
+              <div className="w-8 h-px bg-gold" aria-hidden="true" />
+              <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold">
+                Agenda 2026 · 14 anos em SP
+              </span>
+            </div>
+
+            {/* Headline editorial · quebras de linha pensadas pra hierarquia */}
+            <h1 className="font-playfair text-white leading-[1.05] tracking-tight mb-7 lg:mb-9">
+              <span className="block font-light text-[2.5rem] sm:text-5xl lg:text-[3.4rem] xl:text-[3.8rem]">
+                Bancada de cozinha
+              </span>
+              <span className="block font-medium text-[2.5rem] sm:text-5xl lg:text-[3.4rem] xl:text-[3.8rem]">
+                em <em className="not-italic text-gold">mármore</em>
+              </span>
+              <span className="block font-light text-[1.5rem] sm:text-2xl lg:text-[1.6rem] text-white/65 mt-2 sm:mt-3 tracking-wide">
+                sob medida — entrega em <span className="text-white font-medium">10 dias</span>
+              </span>
             </h1>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-5">
+            {/* CTAs com hierarquia forte */}
+            <div className="flex flex-col gap-3 mb-6">
               <a
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm hover:brightness-110 transition-all"
-                style={{ boxShadow: '0 4px 24px rgba(37,211,102,0.35)' }}
+                className="group flex items-center justify-center gap-3 py-[18px] bg-[#25d366] text-white font-inter font-semibold text-[14px] tracking-wide hover:brightness-110 active:scale-[0.99] transition-all"
+                style={{ boxShadow: '0 8px 32px rgba(37,211,102,0.35), 0 2px 8px rgba(37,211,102,0.2)' }}
               >
                 <span className="w-5 h-5 flex-shrink-0 text-white">{WA_ICON}</span>
                 Chamar no WhatsApp agora
+                <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </a>
               <a
                 href="#orcamento"
-                className="flex-1 flex items-center justify-center gap-2 py-4 border border-gold/40 text-gold font-inter text-sm hover:bg-gold/5 transition-colors"
+                className="group flex items-center justify-center gap-2 py-4 border-[1.5px] border-gold/70 bg-gold/[0.04] text-gold hover:bg-gold hover:text-[#0a0a0a] font-inter text-[13px] tracking-wider uppercase font-medium transition-all duration-300"
               >
-                Pedir orçamento por escrito
-                <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4" aria-hidden="true">
-                  <path d="M8 3v10M3 9l5 4 5-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                Solicitar orçamento por escrito
               </a>
             </div>
 
-            <p className="font-inter text-xs text-white/35 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#25d366] flex-shrink-0" aria-hidden="true" />
-              Agenda 2026 aberta · Respondemos em até 24h
-            </p>
+            {/* Microcopy — agora com peso visual, não cinza apagado */}
+            <div className="flex items-center gap-2.5 pt-4 border-t border-white/[0.07]">
+              <span
+                className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0"
+                style={{ animation: 'pulseGlow 2.5s ease-in-out infinite' }}
+                aria-hidden="true"
+              />
+              <p className="font-inter text-[12px] text-white/55 leading-snug">
+                Resposta em até <strong className="text-white/85 font-medium">24h</strong> · Sem taxa de deslocamento
+              </p>
+            </div>
           </div>
 
-          {/* Imagem — desktop only */}
+          {/* ── Imagem — desktop only ── */}
           <div className="relative hidden lg:block">
             <div className="relative overflow-hidden" style={{ aspectRatio: '4/5' }}>
               <img
                 src="/images/portfolio/cozinha-quartzo-pendentes.jpg"
-                alt="Bancada de cozinha em quartzo branco — projeto Genuíno Gran"
+                alt="Bancada de cozinha em mármore — projeto Genuíno Gran"
                 className="w-full h-full object-cover"
                 loading="eager"
                 fetchpriority="high"
               />
+              {/* Vinheta editorial sutil pra integrar com fundo */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 aria-hidden="true"
-                style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.45) 0%, transparent 40%)' }}
+                style={{ boxShadow: 'inset 0 0 100px rgba(10,10,10,0.35)' }}
               />
-              <div className="absolute bottom-6 left-6 px-5 py-4 bg-[#0a0a0a]/90 backdrop-blur-sm border border-gold/20">
-                <div className="flex gap-0.5 mb-1.5">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} viewBox="0 0 12 12" fill="#c9a96e" className="w-3 h-3" aria-hidden="true">
-                      <path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9 2.5 10.5l.5-3.5L.5 4.5 4 4z" />
-                    </svg>
-                  ))}
+              {/* Linha dourada vertical decorativa */}
+              <div
+                className="absolute top-0 left-0 w-px"
+                style={{ height: '120px', background: 'linear-gradient(to bottom, #c9a96e, transparent)' }}
+                aria-hidden="true"
+              />
+
+              {/* Card de depoimento sobreposto */}
+              <div className="absolute bottom-6 left-6 right-6 px-5 py-4 bg-[#0a0a0a]/92 backdrop-blur-sm border border-gold/20">
+                <div className="flex items-start gap-3">
+                  <img
+                    src="/images/avatars/cliente-1.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    className="w-10 h-10 rounded-full object-cover border border-gold/30 flex-shrink-0"
+                    loading="eager"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex gap-0.5 mb-1.5" aria-hidden="true">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} viewBox="0 0 12 12" fill="#c9a96e" className="w-3 h-3">
+                          <path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9 2.5 10.5l.5-3.5L.5 4.5 4 4z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="font-playfair text-[15px] text-white leading-snug italic">
+                      "Acabamento perfeito."
+                    </p>
+                    <p className="font-inter text-[10px] text-white/40 mt-1">Larissa P. · Sorocaba</p>
+                  </div>
                 </div>
-                <p className="font-playfair text-sm text-white leading-tight">"Acabamento perfeito."</p>
-                <p className="font-inter text-[10px] text-white/40 mt-0.5">Larissa P. · Sorocaba, 2024</p>
               </div>
             </div>
           </div>
