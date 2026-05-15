@@ -172,12 +172,52 @@
       background-attachment: scroll;
     }
   }
+
+  /* ── LP Hero · entrada cinematográfica ─────────────────────────────────── */
+  /* Imagem do hero faz fade in suave + leve zoom-out (Ken Burns reverso) */
+  .hero-fade-in {
+    animation: heroImgIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: center;
+  }
+
+  /* Linhas do hero fazem fade-up sequencial (efeito editorial de revista) */
+  .hero-line-1,
+  .hero-line-2,
+  .hero-line-3,
+  .hero-line-4 {
+    opacity: 0;
+    animation: heroLineUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-line-1 { animation-delay: 0.15s; }
+  .hero-line-2 { animation-delay: 0.30s; }
+  .hero-line-3 { animation-delay: 0.55s; }
+  .hero-line-4 { animation-delay: 0.70s; }
+
+  /* Scroll hint bounce sutil — chama atenção sem ser intrusivo */
+  .hero-scroll-hint {
+    animation: scrollHintBounce 2.2s ease-in-out infinite;
+  }
 }
 
 /* ── Keyframes ────────────────────────────────────────────────────────────── */
 @keyframes textRise {
   from { opacity: 0; transform: translateY(32px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroImgIn {
+  0%   { opacity: 0; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes heroLineUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollHintBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
 }
 
 @keyframes kenBurns {

@@ -131,18 +131,23 @@ function LPHeader() {
   const logoTranslate = `translateX(-${progress * 50}%)`;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-[#0a0a0a]/80 backdrop-blur-sm border-b border-white/[0.06]">
+    <header className="fixed top-0 left-0 right-0 z-50 h-[68px] bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/[0.08]">
       <Link
         to="/"
         aria-label="Genuíno Gran"
-        className="absolute top-1/2 flex items-center gap-2.5"
+        className="absolute top-1/2 flex items-center gap-3"
         style={{
           left: logoLeft,
           transform: `${logoTranslate} translateY(-50%)`,
         }}
       >
-        <LogoMark className="h-7 w-auto flex-shrink-0" color="white" />
-        <LogoWordmark className="h-[10px] w-auto" color="white" />
+        <LogoMark className="h-9 w-auto flex-shrink-0" color="white" />
+        <div className="leading-none">
+          <LogoWordmark className="h-[13px] w-auto" color="white" />
+          <p className="font-inter text-[9px] tracking-[0.25em] uppercase text-gold mt-1.5">
+            Mármore &amp; Granito
+          </p>
+        </div>
       </Link>
     </header>
   );
@@ -195,17 +200,17 @@ function StickyBar() {
 // Desktop: imagem à direita com card de depoimento sobreposto.
 function Hero() {
   return (
-    <section className="relative pt-16 min-h-[100svh] lg:min-h-screen flex flex-col lg:flex-row lg:items-center bg-[#0a0a0a] overflow-hidden">
+    <section className="relative pt-[68px] min-h-[100svh] lg:min-h-screen flex flex-col lg:flex-row lg:items-center bg-[#0a0a0a] overflow-hidden">
 
       {/* ── MOBILE: imagem como banner superior protagonista ── */}
       <div
         className="lg:hidden relative w-full overflow-hidden"
-        style={{ height: '52vh', minHeight: '380px' }}
+        style={{ height: '48vh', minHeight: '340px' }}
       >
         <img
           src="/images/portfolio/cozinha-quartzo-pendentes.jpg"
           alt="Bancada de cozinha em mármore — projeto Genuíno Gran"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center hero-fade-in"
           loading="eager"
           fetchpriority="high"
         />
@@ -213,9 +218,9 @@ function Hero() {
         <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
-          style={{ boxShadow: 'inset 0 -80px 80px -20px rgba(10,10,10,0.95), inset 0 0 100px rgba(10,10,10,0.35)' }}
+          style={{ boxShadow: 'inset 0 -60px 60px -10px rgba(10,10,10,0.92), inset 0 0 120px rgba(10,10,10,0.4)' }}
         />
-        {/* Trust badge flutuante no canto — proof visual acima da dobra */}
+        {/* Trust badge ★ 5.0 Google — proof visual acima da dobra */}
         <div className="absolute top-5 right-5 flex items-center gap-1.5 px-3 py-1.5 bg-[#0a0a0a]/85 backdrop-blur-sm border border-gold/25">
           <div className="flex gap-0.5" aria-hidden="true">
             {[...Array(5)].map((_, i) => (
@@ -225,6 +230,13 @@ function Hero() {
             ))}
           </div>
           <span className="font-inter text-[10px] tracking-wide text-white/85">5.0 Google</span>
+        </div>
+        {/* Caption contextual — prova que e projeto real, nao stock photo */}
+        <div className="absolute bottom-4 left-5 flex items-center gap-2">
+          <div className="w-4 h-px bg-gold/60" aria-hidden="true" />
+          <span className="font-inter text-[10px] tracking-[0.15em] uppercase text-white/70">
+            Projeto realizado · Alphaville, SP
+          </span>
         </div>
       </div>
 
@@ -239,11 +251,11 @@ function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* ── Coluna de conteúdo ── */}
-          <div className="pt-8 pb-10 lg:py-24">
+          <div className="pt-6 pb-8 lg:py-24">
 
             {/* Pre-headline editorial — linha dourada + caracteres tracked
                 Sinal visual de "marca premium" + escassez sutil sem desvalorizar */}
-            <div className="flex items-center gap-3 mb-6 lg:mb-8">
+            <div className="hero-line-1 flex items-center gap-3 mb-5 lg:mb-8">
               <div className="w-8 h-px bg-gold" aria-hidden="true" />
               <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold">
                 Agenda 2026 · 14 anos em SP
@@ -251,20 +263,33 @@ function Hero() {
             </div>
 
             {/* Headline editorial · quebras de linha pensadas pra hierarquia */}
-            <h1 className="font-playfair text-white leading-[1.05] tracking-tight mb-7 lg:mb-9">
-              <span className="block font-light text-[2.5rem] sm:text-5xl lg:text-[3.4rem] xl:text-[3.8rem]">
+            <h1 className="hero-line-2 font-playfair text-white leading-[1.05] tracking-tight mb-5 lg:mb-9">
+              <span className="block font-light text-[2.3rem] sm:text-5xl lg:text-[3.4rem] xl:text-[3.8rem]">
                 Bancada de cozinha
               </span>
-              <span className="block font-medium text-[2.5rem] sm:text-5xl lg:text-[3.4rem] xl:text-[3.8rem]">
+              <span className="block font-medium text-[2.3rem] sm:text-5xl lg:text-[3.4rem] xl:text-[3.8rem]">
                 em <em className="not-italic text-gold">mármore</em>
               </span>
-              <span className="block font-light text-[1.5rem] sm:text-2xl lg:text-[1.6rem] text-white/65 mt-2 sm:mt-3 tracking-wide">
+              <span className="block font-light text-[1.3rem] sm:text-2xl lg:text-[1.6rem] text-white/65 mt-2 sm:mt-3 tracking-wide">
                 sob medida — entrega em <span className="text-white font-medium">10 dias</span>
               </span>
             </h1>
 
+            {/* SLA destacado · ACIMA dos CTAs pra estar no fold mobile.
+                Promessa visível antes do "call-to-action" cria contexto antes do clique. */}
+            <div className="hero-line-3 inline-flex items-center gap-2.5 mb-5 px-3.5 py-2 bg-[#25d366]/10 border border-[#25d366]/30">
+              <span
+                className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0"
+                style={{ animation: 'pulseGlow 2s ease-in-out infinite' }}
+                aria-hidden="true"
+              />
+              <p className="font-inter text-[12px] text-white/85 leading-none">
+                Resposta em <strong className="text-white font-semibold">2 minutos</strong> · Sem taxa de visita
+              </p>
+            </div>
+
             {/* CTAs com hierarquia forte */}
-            <div className="flex flex-col gap-3 mb-6">
+            <div className="hero-line-4 flex flex-col gap-3">
               <a
                 href={WA_URL}
                 target="_blank"
@@ -286,16 +311,18 @@ function Hero() {
               </a>
             </div>
 
-            {/* Microcopy — agora com peso visual, não cinza apagado */}
-            <div className="flex items-center gap-2.5 pt-4 border-t border-white/[0.07]">
-              <span
-                className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0"
-                style={{ animation: 'pulseGlow 2.5s ease-in-out infinite' }}
-                aria-hidden="true"
-              />
-              <p className="font-inter text-[12px] text-white/55 leading-snug">
-                Resposta em até <strong className="text-white/85 font-medium">2 minutos</strong> · Sem taxa de deslocamento
-              </p>
+            {/* Scroll hint — mobile only, indica que tem mais conteúdo abaixo */}
+            <div className="lg:hidden flex justify-center mt-7">
+              <a
+                href="#orcamento"
+                aria-label="Ver mais conteúdo"
+                className="hero-scroll-hint flex flex-col items-center gap-1.5 text-white/30 hover:text-gold transition-colors"
+              >
+                <span className="font-inter text-[9px] tracking-[0.3em] uppercase">Saiba mais</span>
+                <svg viewBox="0 0 12 16" fill="none" className="w-3 h-4" aria-hidden="true">
+                  <path d="M6 2v10M2 9l4 4 4-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
             </div>
           </div>
 
