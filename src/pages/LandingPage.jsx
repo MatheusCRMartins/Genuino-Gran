@@ -639,6 +639,27 @@ function FinalCTA() {
           <span className="w-5 h-5 text-white">{WA_ICON}</span>
           Chamar no WhatsApp — {BUSINESS.phone}
         </motion.a>
+
+        {/* Divisor + CTA secundário pro institucional — pra quem quer conhecer
+            a empresa antes de pedir orçamento. Posicionado depois do CTA
+            primário pra não competir com a conversão direta. */}
+        <motion.div variants={fadeUp} className="mt-10 pt-8 border-t border-white/[0.06] flex flex-col items-center gap-3">
+          <p className="font-inter text-[11px] tracking-wide text-white/35">
+            Quer conhecer mais sobre a empresa antes?
+          </p>
+          <Link
+            to="/"
+            className="group inline-flex items-center gap-2.5 px-6 py-3 border border-gold/40 text-gold hover:bg-gold hover:text-[#0a0a0a] font-inter text-[12px] tracking-[0.18em] uppercase font-medium transition-all duration-300"
+          >
+            Conheça a Genuíno Gran
+            <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+          <p className="font-inter text-[10px] text-white/25 mt-1">
+            Portfólio completo · Sobre nós · Depoimentos
+          </p>
+        </motion.div>
       </motion.div>
     </section>
   );
