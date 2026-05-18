@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Home from './pages/Home';
-import LandingPage from './pages/LandingPage';
 import ThankYou from './pages/ThankYou';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
 
-// LP V2 com 3D / Three.js / Framer Motion — code-split pra não pesar
-// o bundle das outras páginas (Three.js ~600KB).
-const LandingPageV2 = lazy(() => import('./pages/LandingPageV2'));
+// LP de conversão com efeitos WOW (Hero3D, BeforeAfter, CoverFlow, Framer Motion).
+// Code-split pra manter a Home leve — só baixa Framer Motion quando alguém
+// acessa /orcamento (via ad pago, por exemplo).
+const LandingPage = lazy(() => import('./pages/LandingPage'));
 
 function LoadingScreen() {
   return (
@@ -28,16 +28,18 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/orcamento" element={<LandingPage />} />
-        <Route path="/orcamento/obrigado" element={<ThankYou />} />
         <Route
-          path="/orcamento-v2"
+          path="/orcamento"
           element={
             <Suspense fallback={<LoadingScreen />}>
-              <LandingPageV2 />
+              <LandingPage />
             </Suspense>
           }
         />
+        <Route path="/orcamento/obrigado" element={<ThankYou />} />
+        {/* /orcamento-v2 foi unificada com /orcamento — redirect permanente
+            pra preservar tráfego pago que ainda aponte pra ela. */}
+        <Route path="/orcamento-v2" element={<Navigate to="/orcamento" replace />} />
         <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
