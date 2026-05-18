@@ -9,6 +9,8 @@ import NotFound from './pages/NotFound';
 // Code-split pra manter a Home leve — só baixa Framer Motion quando alguém
 // acessa /orcamento (via ad pago, por exemplo).
 const LandingPage = lazy(() => import('./pages/LandingPage'));
+// LP variação B — editorial imersivo (Lusion-inspired). Pra A/B test.
+const LandingPageImmersive = lazy(() => import('./pages/LandingPageImmersive'));
 
 function LoadingScreen() {
   return (
@@ -40,6 +42,15 @@ export default function App() {
         {/* /orcamento-v2 foi unificada com /orcamento — redirect permanente
             pra preservar tráfego pago que ainda aponte pra ela. */}
         <Route path="/orcamento-v2" element={<Navigate to="/orcamento" replace />} />
+        {/* Variação B — editorial imersivo. Pra A/B test 50/50 com /orcamento. */}
+        <Route
+          path="/orcamento-b"
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <LandingPageImmersive />
+            </Suspense>
+          }
+        />
         <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

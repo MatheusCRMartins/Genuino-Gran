@@ -239,6 +239,37 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── LP Imersiva (variante B) ─────────────────────────────────────────────── */
+
+/* Letras do hero entram subindo de baixo, escalonadas */
+@keyframes heroLetterIn {
+  0%   { opacity: 0; transform: translateY(110%) rotate(2deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+/* Fade up genérico pro hero */
+@keyframes heroFadeUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Ken Burns mais lento e dramático pra LP imersiva */
+@keyframes kenBurnsImmersive {
+  0%   { transform: scale(1.04) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.10) translate3d(-1%, -1%, 0); }
+  100% { transform: scale(1.06) translate3d(1%, 0, 0); }
+}
+
+/* Marquee track horizontal infinito */
+.marquee-track-immersive {
+  animation: marqueeImmersive linear infinite;
+  will-change: transform;
+}
+@keyframes marqueeImmersive {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
 @keyframes kenBurns {
   from { transform: scale(1)    translateZ(0); }
   to   { transform: scale(1.07) translateZ(0); }
