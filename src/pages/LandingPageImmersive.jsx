@@ -352,10 +352,10 @@ function ImmersiveHero() {
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-3 px-8 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm tracking-wide hover:brightness-110 active:scale-[0.99] transition-all"
+          className="group inline-flex items-center gap-3 px-6 sm:px-8 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm tracking-wide hover:brightness-110 active:scale-[0.99] transition-all whitespace-nowrap"
           style={{ boxShadow: '0 12px 40px rgba(37,211,102,0.4)' }}
         >
-          Falar no WhatsApp agora
+          Falar no WhatsApp
           <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -481,16 +481,60 @@ function ScrollyTeller() {
         </div>
       </div>
 
-      {/* Layout 2 col: texto rola, imagem fixa (desktop) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-        {/* Coluna texto (scrolls naturalmente) */}
-        <div className="px-6 lg:px-10 lg:pl-16">
+      {/* ── MOBILE: layout vertical compacto, cada step com sua imagem ── */}
+      <div className="lg:hidden">
+        {STEPS.map((step, i) => (
+          <motion.div
+            key={step.num}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="px-6 mb-16"
+          >
+            {/* Imagem do step */}
+            <div className="relative w-full overflow-hidden mb-6" style={{ aspectRatio: '4/3' }}>
+              <img
+                src={step.img}
+                alt={step.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ boxShadow: 'inset 0 0 60px rgba(10,10,10,0.4)' }}
+                aria-hidden="true"
+              />
+              {/* Numeração canto */}
+              <div className="absolute top-4 left-4 flex items-center gap-2">
+                <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-white bg-[#0a0a0a]/70 backdrop-blur-sm px-2.5 py-1">
+                  {step.num} / {String(STEPS.length).padStart(2, '0')}
+                </span>
+              </div>
+            </div>
+            {/* Texto */}
+            <div>
+              <h3 className="font-playfair font-medium text-white mb-3 leading-tight text-2xl">
+                {step.title}
+              </h3>
+              <p className="font-inter text-[15px] text-white/55 leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* ── DESKTOP: layout pinned com sticky image + scroll-driven steps ── */}
+      <div className="hidden lg:grid grid-cols-2 gap-0">
+        {/* Coluna texto */}
+        <div className="px-10 lg:pl-16">
           {STEPS.map((step, i) => (
             <div
               key={step.num}
               ref={(el) => (stepRefs.current[i] = el)}
               data-step={i}
-              className="min-h-[80vh] lg:min-h-screen flex items-center"
+              className="min-h-screen flex items-center"
             >
               <div className="max-w-md">
                 <span className="block font-playfair font-bold text-gold/15 leading-none mb-4" style={{ fontSize: 'clamp(5rem, 12vw, 9rem)' }}>
@@ -499,7 +543,7 @@ function ScrollyTeller() {
                 <h3 className="font-playfair font-medium text-white mb-5 leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   {step.title}
                 </h3>
-                <p className="font-inter text-[15px] sm:text-base text-white/55 leading-relaxed">
+                <p className="font-inter text-base text-white/55 leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -507,8 +551,8 @@ function ScrollyTeller() {
           ))}
         </div>
 
-        {/* Coluna imagem (sticky desktop, mobile fica oculto) */}
-        <div className="hidden lg:block relative">
+        {/* Coluna imagem (sticky) */}
+        <div className="relative">
           <div className="sticky top-0 h-screen flex items-center justify-center p-10">
             <div className="relative w-full h-[80vh] overflow-hidden">
               <AnimatePresence mode="wait">
@@ -524,13 +568,11 @@ function ScrollyTeller() {
                   loading="lazy"
                 />
               </AnimatePresence>
-              {/* Vinheta sutil */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{ boxShadow: 'inset 0 0 80px rgba(10,10,10,0.4)' }}
                 aria-hidden="true"
               />
-              {/* Indicador inferior */}
               <div className="absolute bottom-6 left-6 flex items-center gap-3 z-10">
                 <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-white/60">
                   {String(activeIdx + 1).padStart(2, '0')} / {String(STEPS.length).padStart(2, '0')}
@@ -562,15 +604,12 @@ const GALLERY_PROJECTS = [
   { src: '/images/portfolio/painel-marmore-penteadeira.jpg', material: 'Mármore Branco', place: 'Alphaville · SP' },
 ];
 
-function HorizontalGallery() {
+function HorizontalGalleryDesktop() {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
   });
-  // Container horizontal desloca de 0 até -(N-1) * width
-  const totalShift = (GALLERY_PROJECTS.length - 1) * 100; // %
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', `-${totalShift / GALLERY_PROJECTS.length * (GALLERY_PROJECTS.length - 1) / 1}%`]);
   // Cálculo: cada card ocupa 100/N % do total. Para deslocar tudo de N-1 cards = (N-1)/N * 100%
   const realX = useTransform(scrollYProgress, [0, 1], ['0%', `${-(100 - 100 / GALLERY_PROJECTS.length)}%`]);
 
@@ -578,12 +617,10 @@ function HorizontalGallery() {
     <section
       ref={sectionRef}
       className="relative bg-[#080808]"
-      // Altura grande = mais "stretch" do scroll horizontal
       style={{ height: `${GALLERY_PROJECTS.length * 80}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
-        {/* Heading */}
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-10 pt-24 lg:pt-28 pb-6 lg:pb-10 w-full">
+        <div className="max-w-screen-2xl mx-auto px-10 pt-28 pb-10 w-full">
           <div className="flex items-end justify-between gap-4">
             <div>
               <span className="block font-inter text-[10px] tracking-[0.3em] uppercase text-gold mb-3">
@@ -597,13 +634,12 @@ function HorizontalGallery() {
                 <em className="not-italic text-gold">é único</em>
               </h2>
             </div>
-            <span className="hidden sm:block font-inter text-[10px] tracking-[0.3em] uppercase text-white/30 pb-2">
+            <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-white/30 pb-2">
               Role · Horizontal
             </span>
           </div>
         </div>
 
-        {/* Track horizontal */}
         <div className="flex-1 relative overflow-hidden">
           <motion.div
             style={{ x: realX, width: `${GALLERY_PROJECTS.length * 100}%` }}
@@ -612,7 +648,7 @@ function HorizontalGallery() {
             {GALLERY_PROJECTS.map((p, i) => (
               <div
                 key={p.src}
-                className="relative flex-shrink-0 h-full flex items-center justify-center p-6 lg:p-10"
+                className="relative flex-shrink-0 h-full flex items-center justify-center p-10"
                 style={{ width: `${100 / GALLERY_PROJECTS.length}%` }}
               >
                 <div className="relative w-full h-full max-w-3xl mx-auto overflow-hidden group">
@@ -622,12 +658,10 @@ function HorizontalGallery() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  {/* Overlay editorial */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%)' }}
                   />
-                  {/* Info */}
                   <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                     <div>
                       <span className="block font-inter text-[10px] tracking-[0.3em] uppercase text-gold mb-1">
@@ -647,8 +681,7 @@ function HorizontalGallery() {
           </motion.div>
         </div>
 
-        {/* Progress bar */}
-        <div className="px-6 lg:px-10 pb-6">
+        <div className="px-10 pb-6">
           <div className="max-w-screen-2xl mx-auto h-px bg-white/[0.08] overflow-hidden">
             <motion.div
               className="h-full bg-gold origin-left"
@@ -658,6 +691,114 @@ function HorizontalGallery() {
         </div>
       </div>
     </section>
+  );
+}
+
+// Mobile: carrossel touch nativo (overflow-x scroll com snap)
+function HorizontalGalleryMobile() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const scrollerRef = useRef(null);
+  const itemRefs = useRef([]);
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let best = { ratio: 0, idx: 0 };
+        entries.forEach((e) => {
+          const idx = Number(e.target.dataset.idx);
+          if (e.intersectionRatio > best.ratio) best = { ratio: e.intersectionRatio, idx };
+        });
+        if (best.ratio > 0.5) setActiveIdx(best.idx);
+      },
+      { root: scroller, threshold: [0.3, 0.5, 0.7, 1] }
+    );
+    itemRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="relative py-20 bg-[#080808]">
+      <div className="px-6 mb-8">
+        <span className="block font-inter text-[10px] tracking-[0.3em] uppercase text-gold mb-3">
+          Portfólio · Cap. 03
+        </span>
+        <h2
+          className="font-playfair font-light text-white leading-[0.95] tracking-tight"
+          style={{ fontSize: 'clamp(2rem, 9vw, 3.5rem)' }}
+        >
+          Cada projeto<br />
+          <em className="not-italic text-gold">é único</em>
+        </h2>
+      </div>
+
+      <div
+        ref={scrollerRef}
+        className="flex gap-4 overflow-x-auto px-6 pb-4 no-scrollbar"
+        style={{ scrollSnapType: 'x mandatory' }}
+      >
+        {GALLERY_PROJECTS.map((p, i) => (
+          <div
+            key={p.src}
+            ref={(el) => (itemRefs.current[i] = el)}
+            data-idx={i}
+            className="relative flex-shrink-0 overflow-hidden"
+            style={{ width: '78vw', aspectRatio: '3/4', scrollSnapAlign: 'start' }}
+          >
+            <img
+              src={p.src}
+              alt={`${p.material} — ${p.place}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%)' }}
+            />
+            <div className="absolute bottom-5 left-5 right-5">
+              <span className="block font-inter text-[10px] tracking-[0.3em] uppercase text-gold mb-1">
+                {p.material}
+              </span>
+              <span className="block font-playfair text-white text-lg">
+                {p.place}
+              </span>
+            </div>
+            <div className="absolute top-4 right-4">
+              <span className="font-inter text-[10px] tracking-wider text-white/60 bg-[#0a0a0a]/70 backdrop-blur-sm px-2.5 py-1">
+                {String(i + 1).padStart(2, '0')} / {String(GALLERY_PROJECTS.length).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Indicador */}
+      <div className="px-6 flex items-center gap-3 mt-2">
+        <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-white/40">
+          {String(activeIdx + 1).padStart(2, '0')} / {String(GALLERY_PROJECTS.length).padStart(2, '0')}
+        </span>
+        <div className="flex-1 h-px bg-white/[0.08] overflow-hidden">
+          <div
+            className="h-full bg-gold transition-all duration-300"
+            style={{ width: `${((activeIdx + 1) / GALLERY_PROJECTS.length) * 100}%` }}
+          />
+        </div>
+        <span className="font-inter text-[10px] tracking-[0.2em] uppercase text-white/30">
+          ← arraste →
+        </span>
+      </div>
+    </section>
+  );
+}
+
+function HorizontalGallery() {
+  // Renderiza ambos; CSS esconde o que não cabe via lg: breakpoints internos.
+  return (
+    <>
+      <div className="lg:hidden"><HorizontalGalleryMobile /></div>
+      <div className="hidden lg:block"><HorizontalGalleryDesktop /></div>
+    </>
   );
 }
 
