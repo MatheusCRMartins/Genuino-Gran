@@ -42,4 +42,7 @@ export const TRACKING = {
   ga4Id:          'G-68DNKCETG3',   // GA4 ativo · stream "Genuíno Gran"
   metaPixelId:    '980929907635898', // Meta Pixel ativo
   formspreeId:    'xrejlgvj',        // https://formspree.io/f/xrejlgvj
+  googleAdsId:    'AW-18160112548',  // tag base do Google Ads (carregada no index.html)
+  // Rótulo da ação de conversão "Enviar formulário de lead" (Google Ads)
+  googleAdsConversion: 'AW-18160112548/eFqyCNCbsq0cEKSntdND',
 };

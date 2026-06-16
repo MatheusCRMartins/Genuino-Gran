@@ -207,6 +207,12 @@ export default function ContactForm() {
             event_category: 'formulario',
             event_label: form.tipo,
           });
+          // Conversão Google Ads — envio de formulário de lead
+          window.gtag('event', 'conversion', {
+            send_to: TRACKING.googleAdsConversion,
+            value: 1.0,
+            currency: 'BRL',
+          });
         }
       } else {
         setFormError('Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');

@@ -761,6 +761,12 @@ function EditorialForm() {
         setSubmitted(true);
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', { event_category: 'lp_orcamento_b' });
+          // Conversão Google Ads — envio de formulário de lead
+          window.gtag('event', 'conversion', {
+            send_to: TRACKING.googleAdsConversion,
+            value: 1.0,
+            currency: 'BRL',
+          });
         }
         if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
       } else {
