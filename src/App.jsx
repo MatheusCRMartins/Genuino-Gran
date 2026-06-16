@@ -42,6 +42,8 @@ export default function App() {
         {/* /orcamento-v2 foi unificada com /orcamento — redirect permanente
             pra preservar tráfego pago que ainda aponte pra ela. */}
         <Route path="/orcamento-v2" element={<Navigate to="/orcamento" replace />} />
+        {/* URL final do anúncio do Google Ads (bancada-marmore) → LP de conversão. */}
+        <Route path="/bancada-marmore" element={<Navigate to="/orcamento" replace />} />
         {/* Variação B — editorial imersivo. Pra A/B test 50/50 com /orcamento. */}
         <Route
           path="/orcamento-b"
