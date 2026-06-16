@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { LogoMark, LogoWordmark } from './Logo';
-import { TRACKING, WA_URL, BUSINESS } from '../config';
+import { TRACKING, WA_URL, BUSINESS, reportAdsConversion } from '../config';
 
 const INITIAL = { nome: '', whatsapp: '', email: '', tipo: '', mensagem: '' };
 
@@ -207,13 +207,9 @@ export default function ContactForm() {
             event_category: 'formulario',
             event_label: form.tipo,
           });
-          // Conversão Google Ads — envio de formulário de lead
-          window.gtag('event', 'conversion', {
-            send_to: TRACKING.googleAdsConversion,
-            value: 1.0,
-            currency: 'BRL',
-          });
         }
+        // Conversão Google Ads + Conversões Otimizadas (telefone/e-mail com hash)
+        reportAdsConversion({ phone: form.whatsapp, email: form.email });
       } else {
         setFormError('Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');
       }

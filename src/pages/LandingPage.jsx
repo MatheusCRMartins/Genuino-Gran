@@ -12,7 +12,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { LogoMark, LogoWordmark } from '../components/Logo';
-import { WA_URL, BUSINESS, TRACKING } from '../config';
+import { WA_URL, BUSINESS, TRACKING, reportAdsConversion } from '../config';
 import Hero3DParallax from '../components/lp/Hero3DParallax';
 import BeforeAfterSlider from '../components/lp/BeforeAfterSlider';
 import CoverFlowGallery from '../components/lp/CoverFlowGallery';
@@ -69,13 +69,9 @@ function LeadForm({ id = 'lead-form' }) {
         setSubmitted(true);
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', { event_category: 'lp_orcamento' });
-          // Conversão Google Ads — envio de formulário de lead
-          window.gtag('event', 'conversion', {
-            send_to: TRACKING.googleAdsConversion,
-            value: 1.0,
-            currency: 'BRL',
-          });
         }
+        // Conversão Google Ads + Conversões Otimizadas (telefone com hash)
+        reportAdsConversion({ phone: whatsapp });
         if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
       } else {
         setError('Erro ao enviar. Fale direto pelo WhatsApp.');

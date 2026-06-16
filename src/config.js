@@ -46,3 +46,35 @@ export const TRACKING = {
   // Rótulo da ação de conversão "Enviar formulário de lead" (Google Ads)
   googleAdsConversion: 'AW-18160112548/eFqyCNCbsq0cEKSntdND',
 };
+
+/**
+ * Normaliza um telefone brasileiro para o formato E.164 (+55DDDNUMERO),
+ * exigido pelas Conversões Otimizadas (Enhanced Conversions) do Google Ads.
+ * Retorna undefined se não houver dígitos. O gtag faz o hash do valor.
+ */
+export function toE164BR(raw) {
+  const d = String(raw || '').replace(/\D/g, '');
+  if (!d) return undefined;
+  // 12–13 dígitos começando com 55 = já tem código do país (fixo/celular)
+  if ((d.length === 12 || d.length === 13) && d.startsWith('55')) return '+' + d;
+  return '+55' + d;
+}
+
+/**
+ * Dispara a conversão do Google Ads com dados do usuário (Enhanced Conversions).
+ * email é opcional; telefone é normalizado para E.164. Seguro: o gtag.js
+ * aplica hash SHA-256 nos dados antes de enviá-los ao Google.
+ */
+export function reportAdsConversion({ phone, email } = {}) {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  const userData = {};
+  const tel = toE164BR(phone);
+  if (tel) userData.phone_number = tel;
+  if (email && email.includes('@')) userData.email = email.trim().toLowerCase();
+  if (Object.keys(userData).length) window.gtag('set', 'user_data', userData);
+  window.gtag('event', 'conversion', {
+    send_to: TRACKING.googleAdsConversion,
+    value: 1.0,
+    currency: 'BRL',
+  });
+}

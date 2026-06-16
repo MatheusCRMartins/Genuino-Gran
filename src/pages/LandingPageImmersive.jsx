@@ -14,7 +14,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { LogoMark, LogoWordmark } from '../components/Logo';
-import { WA_URL, BUSINESS, TRACKING } from '../config';
+import { WA_URL, BUSINESS, TRACKING, reportAdsConversion } from '../config';
 
 // ────────────────────────────────────────────────────────────────────────────────
 // LOADING CURTAIN — cortina de abertura cinematográfica
@@ -761,13 +761,9 @@ function EditorialForm() {
         setSubmitted(true);
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', { event_category: 'lp_orcamento_b' });
-          // Conversão Google Ads — envio de formulário de lead
-          window.gtag('event', 'conversion', {
-            send_to: TRACKING.googleAdsConversion,
-            value: 1.0,
-            currency: 'BRL',
-          });
         }
+        // Conversão Google Ads + Conversões Otimizadas (telefone com hash)
+        reportAdsConversion({ phone: whatsapp });
         if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
       } else {
         setError('Erro ao enviar. Fale direto pelo WhatsApp.');
