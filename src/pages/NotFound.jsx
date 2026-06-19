@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoMark, LogoWordmark } from '../components/Logo';
-import { WA_URL } from '../config';
+import { WA_URL, trackWhatsApp } from '../config';
 
 export default function NotFound() {
   useEffect(() => {
@@ -44,6 +44,7 @@ export default function NotFound() {
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsApp('404')}
           className="px-10 py-4 border border-white/15 text-white/65 font-inter text-xs tracking-widest uppercase hover:border-white/35 hover:text-white transition-all duration-300"
         >
           Falar no WhatsApp

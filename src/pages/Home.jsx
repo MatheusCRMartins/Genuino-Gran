@@ -9,7 +9,7 @@ import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 import ParallaxDivider from '../components/ParallaxDivider';
 import PhotoStrip from '../components/PhotoStrip';
-import { WA_URL } from '../config';
+import { WA_URL, trackWhatsApp } from '../config';
 
 function WhatsAppButton() {
   return (
@@ -17,6 +17,7 @@ function WhatsAppButton() {
       href={WA_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackWhatsApp('home_flutuante')}
       aria-label="Fale conosco no WhatsApp"
       className="fixed bottom-6 right-6 z-50"
     >

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { LogoMark, LogoWordmark } from './Logo';
-import { TRACKING, WA_URL, BUSINESS, reportAdsConversion } from '../config';
+import { TRACKING, WA_URL, BUSINESS, reportAdsConversion, trackWhatsApp } from '../config';
 
 const INITIAL = { nome: '', whatsapp: '', email: '', tipo: '', mensagem: '' };
 
@@ -386,6 +386,7 @@ export default function ContactForm() {
                         href={WA_URL}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackWhatsApp('form_erro')}
                         className="font-inter text-[11px] text-[#25d366]/70 hover:text-[#25d366] text-center transition-colors underline underline-offset-4"
                       >
                         Falar pelo WhatsApp
@@ -405,6 +406,7 @@ export default function ContactForm() {
                     href={WA_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsApp('form_direto')}
                     className="w-full py-3.5 flex items-center justify-center gap-2.5 border border-[#25d366]/30 text-[#25d366] bg-[#25d366]/[0.06] hover:bg-[#25d366]/15 font-inter text-[11px] tracking-wide transition-all duration-300"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 flex-shrink-0" aria-hidden="true">

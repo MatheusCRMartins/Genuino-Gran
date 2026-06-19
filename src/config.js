@@ -45,6 +45,9 @@ export const TRACKING = {
   googleAdsId:    'AW-18160112548',  // tag base do Google Ads (carregada no index.html)
   // Rótulo da ação de conversão "Enviar formulário de lead" (Google Ads)
   googleAdsConversion: 'AW-18160112548/eFqyCNCbsq0cEKSntdND',
+  // Rótulo da ação de conversão "Clique no WhatsApp" (Google Ads).
+  // Preencher quando criar a ação no painel (ex.: 'AW-18160112548/XXXXXXXX').
+  googleAdsWhatsappConversion: '',
 };
 
 /**
@@ -77,4 +80,26 @@ export function reportAdsConversion({ phone, email } = {}) {
     value: 1.0,
     currency: 'BRL',
   });
+}
+
+/**
+ * Rastreia clique em qualquer botão de WhatsApp do site.
+ * - dataLayer + evento GA4 "click_whatsapp" (com `local` = de onde a pessoa clicou).
+ * - Conversão do Google Ads, SE TRACKING.googleAdsWhatsappConversion estiver preenchido.
+ * - Evento "Contact" do Meta Pixel.
+ * `local` identifica o botão (ex.: 'home_hero', 'lp_sticky', 'rodape', 'navbar').
+ */
+export function trackWhatsApp(local = 'site') {
+  if (typeof window === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'click_whatsapp', local });
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'click_whatsapp', { event_category: 'whatsapp', event_label: local });
+    if (TRACKING.googleAdsWhatsappConversion) {
+      window.gtag('event', 'conversion', { send_to: TRACKING.googleAdsWhatsappConversion });
+    }
+  }
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'Contact', { content_name: local });
+  }
 }

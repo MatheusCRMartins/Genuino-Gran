@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { LogoMark, LogoWordmark } from './Logo';
-import { WA_URL } from '../config';
+import { WA_URL, trackWhatsApp } from '../config';
 
 const NAV_LINKS = [
   { href: '#portfolio', label: 'Portfólio' },
@@ -137,7 +137,7 @@ export default function Navbar() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={closeMenu}
+              onClick={() => { closeMenu(); trackWhatsApp('navbar'); }}
               className="flex items-center justify-center gap-2.5 w-full py-3.5 bg-[#25d366]/10 border border-[#25d366]/30 text-[#25d366] font-inter text-[12px] tracking-wide hover:bg-[#25d366]/20 transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 flex-shrink-0" aria-hidden="true">

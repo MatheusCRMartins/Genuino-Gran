@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { LogoMark, LogoWordmark } from './Logo';
-import { WA_URL, BUSINESS, SOCIAL } from '../config';
+import { WA_URL, BUSINESS, SOCIAL, trackWhatsApp } from '../config';
 
 const NAV = [
   ['#portfolio',    'Portfólio'],
@@ -63,6 +63,7 @@ function PreFooter() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsApp('rodape_botao')}
               className="inline-flex items-center justify-center gap-3 px-8 sm:px-9 py-4 border border-white/15 text-white/65 font-inter text-[11px] tracking-[0.22em] uppercase hover:border-white/35 hover:text-white transition-all duration-300"
             >
               Chamar no WhatsApp
@@ -176,6 +177,7 @@ export default function Footer() {
                     href={WA_URL}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackWhatsApp('rodape_contato')}
                     className="font-inter text-[13px] text-white/40 hover:text-gold transition-colors duration-200 flex items-center gap-2.5"
                   >
                     <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4 text-gold/40 flex-shrink-0" aria-hidden="true">

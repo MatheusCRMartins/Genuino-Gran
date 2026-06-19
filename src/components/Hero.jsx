@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { WA_URL } from '../config';
+import { WA_URL, trackWhatsApp } from '../config';
 import PhotoStrip from './PhotoStrip';
 
 /* ─── Slides — foto + headline por ambiente ──────────────────────────────── */
@@ -190,6 +190,7 @@ export default function Hero() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsApp('home_hero')}
               className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 border border-white/15 text-white/65 font-inter text-[11px] tracking-[0.22em] uppercase hover:border-[#25d366]/50 hover:text-[#25d366] transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 flex-shrink-0" aria-hidden="true">

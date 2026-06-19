@@ -1,5 +1,5 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import { WA_URL } from '../config';
+import { WA_URL, trackWhatsApp } from '../config';
 
 const STATS = [
   { value: '14', suffix: '+',     label: 'Anos de experiência' },
@@ -155,6 +155,7 @@ export default function About() {
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsApp('home_sobre_mobile')}
                 className="group flex items-center gap-3 w-full px-6 py-4 border border-gold/40 hover:bg-gold transition-all duration-300"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gold group-hover:text-[#0a0a0a] flex-shrink-0 transition-colors" aria-hidden="true">
@@ -201,6 +202,7 @@ export default function About() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsApp('home_sobre')}
               className="group inline-flex items-center gap-3 px-10 py-4 border border-gold/40 hover:bg-gold transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gold group-hover:text-[#0a0a0a] flex-shrink-0 transition-colors" aria-hidden="true">

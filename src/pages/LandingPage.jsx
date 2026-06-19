@@ -12,7 +12,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { LogoMark, LogoWordmark } from '../components/Logo';
-import { WA_URL, BUSINESS, TRACKING, reportAdsConversion } from '../config';
+import { WA_URL, BUSINESS, TRACKING, reportAdsConversion, trackWhatsApp } from '../config';
 import Hero3DParallax from '../components/lp/Hero3DParallax';
 import BeforeAfterSlider from '../components/lp/BeforeAfterSlider';
 import CoverFlowGallery from '../components/lp/CoverFlowGallery';
@@ -182,7 +182,7 @@ function StickyBar() {
       aria-hidden={!visible}
     >
       <div className="flex border-t border-white/10" style={{ background: 'rgba(8,8,8,0.97)', backdropFilter: 'blur(12px)' }}>
-        <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm">
+        <a href={WA_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsApp('lp_sticky')} className="flex-1 flex items-center justify-center gap-2 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm">
           <span className="w-5 h-5 text-white">{WA_ICON}</span>
           WhatsApp
         </a>
@@ -258,6 +258,7 @@ function HeroV2() {
             <motion.div variants={fadeUp} className="flex flex-col gap-3">
               <a
                 href={WA_URL} target="_blank" rel="noopener noreferrer"
+                onClick={() => trackWhatsApp('lp_hero')}
                 className="group flex items-center justify-center gap-3 py-[18px] bg-[#25d366] text-white font-inter font-semibold text-[14px] tracking-wide hover:brightness-110 active:scale-[0.99] transition-all"
                 style={{ boxShadow: '0 8px 32px rgba(37,211,102,0.35)' }}
               >
@@ -605,6 +606,7 @@ function FormSection() {
             </div>
             <a
               href={WA_URL} target="_blank" rel="noopener noreferrer"
+              onClick={() => trackWhatsApp('lp_processo')}
               className="mt-4 w-full flex items-center justify-center gap-2.5 py-3.5 border border-[#25d366]/30 text-[#25d366] bg-[#25d366]/[0.06] hover:bg-[#25d366]/15 font-inter text-xs tracking-wide transition-all"
             >
               <span className="w-4 h-4 text-[#25d366]">{WA_ICON}</span>
@@ -635,6 +637,7 @@ function FinalCTA() {
         <motion.a
           variants={fadeUp}
           href={WA_URL} target="_blank" rel="noopener noreferrer"
+          onClick={() => trackWhatsApp('lp_final')}
           className="inline-flex items-center gap-3 px-10 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm hover:brightness-110 transition-all"
           style={{ boxShadow: '0 4px 24px rgba(37,211,102,0.3)' }}
         >

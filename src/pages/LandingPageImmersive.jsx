@@ -14,7 +14,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { LogoMark, LogoWordmark } from '../components/Logo';
-import { WA_URL, BUSINESS, TRACKING, reportAdsConversion } from '../config';
+import { WA_URL, BUSINESS, TRACKING, reportAdsConversion, trackWhatsApp } from '../config';
 
 // ────────────────────────────────────────────────────────────────────────────────
 // LOADING CURTAIN — cortina de abertura cinematográfica
@@ -215,6 +215,7 @@ function FloatingHeader() {
             href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsApp('lpb_header')}
             className="font-inter text-[11px] tracking-[0.18em] uppercase text-gold hover:text-white transition-colors"
           >
             WhatsApp →
@@ -352,6 +353,7 @@ function ImmersiveHero() {
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsApp('lpb_hero')}
           className="group inline-flex items-center gap-3 px-6 sm:px-8 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm tracking-wide hover:brightness-110 active:scale-[0.99] transition-all whitespace-nowrap"
           style={{ boxShadow: '0 12px 40px rgba(37,211,102,0.4)' }}
         >
@@ -919,7 +921,7 @@ function EditorialForm() {
 
               <p className="font-inter text-[11px] text-white/30 text-center mt-4">
                 ou{' '}
-                <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="text-[#25d366] hover:text-[#1ebe57] underline underline-offset-2">
+                <a href={WA_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsApp('lpb_form')} className="text-[#25d366] hover:text-[#1ebe57] underline underline-offset-2">
                   fale agora pelo WhatsApp
                 </a>
               </p>
@@ -976,6 +978,7 @@ function EpicFooter() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsApp('lpb_cta')}
               className="group flex items-center justify-between gap-4 px-8 py-5 bg-[#25d366] text-white font-inter font-semibold text-sm tracking-wide hover:brightness-110 transition-all"
               style={{ boxShadow: '0 12px 40px rgba(37,211,102,0.3)' }}
             >
@@ -1000,7 +1003,7 @@ function EpicFooter() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-4 pt-10 border-t border-white/[0.06]">
           <div>
             <span className="block font-inter text-[9px] tracking-[0.3em] uppercase text-white/30 mb-2">WhatsApp</span>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="font-playfair text-base sm:text-lg text-white hover:text-gold transition-colors">
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsApp('lpb_rodape')} className="font-playfair text-base sm:text-lg text-white hover:text-gold transition-colors">
               {BUSINESS.phone}
             </a>
           </div>

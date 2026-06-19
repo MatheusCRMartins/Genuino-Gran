@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LogoMark, LogoWordmark } from '../components/Logo';
-import { BUSINESS, SOCIAL } from '../config';
+import { BUSINESS, SOCIAL, trackWhatsApp } from '../config';
 
 function pushDL(event, extra = {}) {
   window.dataLayer = window.dataLayer || [];
@@ -82,7 +82,7 @@ export default function ThankYou() {
             rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-[#25d366] text-white font-inter font-semibold text-sm hover:brightness-110 transition-all"
             style={{ boxShadow: '0 4px 20px rgba(37,211,102,0.35)' }}
-            onClick={() => pushDL('clique_whatsapp', { origem: 'obrigado', material })}
+            onClick={() => { pushDL('clique_whatsapp', { origem: 'obrigado', material }); trackWhatsApp('obrigado'); }}
           >
             {WA_ICON}
             Falar no WhatsApp
