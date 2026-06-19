@@ -46,8 +46,7 @@ export const TRACKING = {
   // Rótulo da ação de conversão "Enviar formulário de lead" (Google Ads)
   googleAdsConversion: 'AW-18160112548/eFqyCNCbsq0cEKSntdND',
   // Rótulo da ação de conversão "Clique no WhatsApp" (Google Ads).
-  // Preencher quando criar a ação no painel (ex.: 'AW-18160112548/XXXXXXXX').
-  googleAdsWhatsappConversion: '',
+  googleAdsWhatsappConversion: 'AW-18160112548/wBunCNnR_sEcEKSntdND',
 };
 
 /**
@@ -96,7 +95,11 @@ export function trackWhatsApp(local = 'site') {
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'click_whatsapp', { event_category: 'whatsapp', event_label: local });
     if (TRACKING.googleAdsWhatsappConversion) {
-      window.gtag('event', 'conversion', { send_to: TRACKING.googleAdsWhatsappConversion });
+      window.gtag('event', 'conversion', {
+        send_to: TRACKING.googleAdsWhatsappConversion,
+        value: 1.0,
+        currency: 'BRL',
+      });
     }
   }
   if (typeof window.fbq === 'function') {
