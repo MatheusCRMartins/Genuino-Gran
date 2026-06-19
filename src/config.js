@@ -6,8 +6,8 @@
 export const BUSINESS = {
   name:        'Genuíno Gran',
   tagline:     'Mármore e Granito Premium',
-  phone:       '(11) 97023-6499',
-  whatsapp:    '5511970236499',
+  phone:       '(11) 96723-8569',
+  whatsapp:    '5511967238569',
   email:       'genuinogran@gmail.com',
   city:        'São Paulo, Litoral e Interior',
   hours:       'Todos os dias · 8h–19h',

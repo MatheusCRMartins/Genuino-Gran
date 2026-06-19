@@ -20,7 +20,7 @@ Site institucional + landing page de conversão para a **Marmoraria Genuíno Gra
 |---|---|
 | Empresa | Genuíno Gran |
 | Dono | Antonio Roberto (Mestre Marmorista, fundador) |
-| WhatsApp | (11) 97023-6499 · link: `wa.me/5511970236499` |
+| WhatsApp | (11) 96723-8569 · link: `wa.me/5511967238569` |
 | E-mail | genuinogran@gmail.com |
 | Horário | Todos os dias · 8h–19h |
 | Mercado | 14 anos, +4mil projetos, 4 colaboradores |

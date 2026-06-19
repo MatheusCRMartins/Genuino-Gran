@@ -270,7 +270,7 @@ git push
 
 ## 📞 CONTATOS DO NEGÓCIO (do config.js)
 
-- **WhatsApp:** (11) 97023-6499
+- **WhatsApp:** (11) 96723-8569
 - **E-mail:** genuinogran@gmail.com
 - **Horário:** Todos os dias · 8h–19h
 - **Áreas:** São Paulo, Alphaville, Santana de Parnaíba, Cotia, Sorocaba, Litoral, Interior
